@@ -79,7 +79,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joseph Doe</span>
                                     <span class="message">Lorem ipsum dolor sit.</span>
@@ -88,7 +88,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joseph Junior</span>
                                     <span class="message truncate">Truncated message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam, nec venenatis risus. Vestibulum blandit faucibus est et malesuada. Sed interdum cursus dui nec venenatis. Pellentesque non nisi lobortis, rutrum eros ut, convallis nisi. Sed tellus turpis, dignissim sit amet tristique quis, pretium id est. Sed aliquam diam diam, sit amet faucibus tellus ultricies eu. Aliquam lacinia nibh a metus bibendum, eu commodo eros commodo. Sed commodo molestie elit, a molestie lacus porttitor id. Donec facilisis varius sapien, ac fringilla velit porttitor et. Nam tincidunt gravida dui, sed pharetra odio pharetra nec. Duis consectetur venenatis pharetra. Vestibulum egestas nisi quis elementum elementum.</span>
@@ -97,7 +97,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joe Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joe Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joe Junior</span>
                                     <span class="message">Lorem ipsum dolor sit.</span>
@@ -106,7 +106,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joseph Junior</span>
                                     <span class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam.</span>
@@ -180,7 +180,7 @@
         <div id="userbox" class="userbox">
             <a href="#" data-toggle="dropdown">
                 <figure class="profile-picture">
-                    <img src="/images/!logged-user.jpg" alt="{{ user.firstname }} {{ user.firstname }}" class="rounded-circle" data-lock-picture="/images/!logged-user.jpg" />
+                    <img src="https://www.gravatar.com/avatar/{{ user.email | md5 }}?d=identicon&s=35" alt="{{ user.firstname }} {{ user.firstname }}" class="rounded-circle" data-lock-picture="https://www.gravatar.com/avatar/{{ user.email | md5 }}?d=identicon&s=120" />
                 </figure>
                 <div class="profile-info" data-lock-name="{{ user.firstname }} {{ user.firstname }}" data-lock-email="{{ user.email }}">
                     <span class="name">{{ user.firstname }} {{ user.firstname }}</span>
