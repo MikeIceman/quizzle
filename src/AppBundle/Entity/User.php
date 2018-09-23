@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -26,6 +27,15 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
+	 *
+	 * @Assert\NotBlank(message="Пожалуйста, введите своё имя", groups={"Registration", "Profile"})
+	 * @Assert\Length(
+	 *     min=3,
+	 *     max=255,
+	 *     minMessage="Слишком короткое имя",
+	 *     maxMessage="Слишком длинное имя",
+	 *     groups={"Registration", "Profile"}
+	 * )
      */
     private $firstname;
 
@@ -33,22 +43,40 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(message="Пожалуйста, введите свою фамилию", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="Слишком короткая фвмилия",
+     *     maxMessage="Слишком длинная фамилия",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="middlename", type="string", length=255, nullable=true)
-     */
-    private $middlename;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(message="Пожалуйста, введите свой телефон", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=10,
+     *     max=14,
+     *     minMessage="Слишком короткое значение",
+     *     maxMessage="Слишком длинное значение",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $phone;
+
+	public function __construct()
+	{
+		parent::__construct();
+		// your own logic
+		$this->roles = array('ROLE_USER');
+	}
 
 	/**
 	 * @return string
@@ -80,22 +108,6 @@ class User extends BaseUser
 	public function setLastname($lastname)
 	{
 		$this->lastname = $lastname;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getMiddlename()
-	{
-		return $this->middlename;
-	}
-
-	/**
-	 * @param string $middlename
-	 */
-	public function setMiddlename($middlename)
-	{
-		$this->middlename = $middlename;
 	}
 
 	/**
