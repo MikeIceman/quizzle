@@ -1,0 +1,54 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <div class="form-group mb-3">
+        <label>{{ 'security.login.username'|trans }}</label>
+        <div class="input-group">
+            <input tabindex="1" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" class="form-control form-control-lg" />
+            <span class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <div class="clearfix">
+            <label class="float-left">{{ 'security.login.password'|trans }}</label>
+            <a href="{{ path('fos_user_resetting_request') }}" class="float-right">Забыли пароль?</a>
+        </div>
+        <div class="input-group">
+            <input tabindex="2" type="password" id="password" name="_password" required="required" autocomplete="current-password"  class="form-control form-control-lg" />
+            <span class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="checkbox-custom checkbox-default">
+                <input tabindex="3" type="checkbox" id="remember_me" name="_remember_me" value="on" checked="checked" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
+        </div>
+        <div class="col-sm-4 text-right">
+            <input tabindex="4" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-primary mt-2" />
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,43 @@
+/* Add here all your CSS customizations */
+body.login {
+    background: url(/images/patterns/bright_squares.png) 0 0 repeat;
+    width: 100%;
+}
+
+/* Sign Screens - Wrappers */
+.body-sign {
+    display: table;
+    height: 100vh;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 0 15px;
+    width: 100%;
+}
+.body-sign .center-sign {
+    display: table-cell;
+    padding-top: 20px;
+    vertical-align: middle;
+    padding-bottom:80px;
+}
+.body-sign .panel-sign {
+    background: transparent;
+}
+.body-sign .panel-sign .panel-title-sign .title {
+    background-color: #cccccc;
+    border-radius: 5px 5px 0 0;
+    color: #FFF;
+    display: inline-block;
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 20px;
+    line-height: 2rem;
+    padding: 13px 17px;
+    vertical-align: bottom;
+}
+.body-sign .panel-sign .panel-body {
+    background: #FFF;
+    border-top: 5px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 33px 33px 15px;
+}
