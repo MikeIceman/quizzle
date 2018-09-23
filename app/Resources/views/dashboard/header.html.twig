@@ -79,7 +79,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joseph Doe Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joseph Doe</span>
                                     <span class="message">Lorem ipsum dolor sit.</span>
@@ -88,7 +88,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joseph Junior</span>
                                     <span class="message truncate">Truncated message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam, nec venenatis risus. Vestibulum blandit faucibus est et malesuada. Sed interdum cursus dui nec venenatis. Pellentesque non nisi lobortis, rutrum eros ut, convallis nisi. Sed tellus turpis, dignissim sit amet tristique quis, pretium id est. Sed aliquam diam diam, sit amet faucibus tellus ultricies eu. Aliquam lacinia nibh a metus bibendum, eu commodo eros commodo. Sed commodo molestie elit, a molestie lacus porttitor id. Donec facilisis varius sapien, ac fringilla velit porttitor et. Nam tincidunt gravida dui, sed pharetra odio pharetra nec. Duis consectetur venenatis pharetra. Vestibulum egestas nisi quis elementum elementum.</span>
@@ -97,7 +97,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joe Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joe Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joe Junior</span>
                                     <span class="message">Lorem ipsum dolor sit.</span>
@@ -106,7 +106,7 @@
                             <li>
                                 <a href="#" class="clearfix">
                                     <figure class="image">
-                                        <img src="img/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
+                                        <img src="/images/!sample-user.jpg" alt="Joseph Junior" class="rounded-circle" />
                                     </figure>
                                     <span class="title">Joseph Junior</span>
                                     <span class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam.</span>
@@ -182,7 +182,7 @@
                 <figure class="profile-picture">
                     <img src="/images/!logged-user.jpg" alt="{{ user.firstname }} {{ user.firstname }}" class="rounded-circle" data-lock-picture="/images/!logged-user.jpg" />
                 </figure>
-                <div class="profile-info" data-lock-name="{{ user.firstname }} {{ user.firstname }}" data-lock-email="johndoe@okler.com">
+                <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                     <span class="name">{{ user.firstname }} {{ user.firstname }}</span>
                     <span class="role">{{ role }}</span>
                 </div>
@@ -194,13 +194,8 @@
                 <ul class="list-unstyled mb-2">
                     <li class="divider"></li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="{{ path('personal') }}"><i class="fas fa-user"></i> Личный раздел</a>
+                        <a role="menuitem" tabindex="-1" href="/personal/"><i class="fas fa-user"></i> Личный раздел</a>
                     </li>
-                    {% if is_granted('ROLE_ADMIN') != false %}
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="{{ path('dashboard') }}"><i class="fas fa-cog"></i> Админпанель</a>
-                        </li>
-                    {% endif %}
                     <li>
                         <a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_logout') }}"><i class="fas fa-power-off"></i> Выход</a>
                     </li>

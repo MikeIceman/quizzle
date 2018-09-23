@@ -137,7 +137,7 @@ class User extends BaseUser
 	 */
 	public function getRoleDescription($role)
 	{
-		$roles = ['ROLE_SUPER_ADMIN' => 'Разработчик', 'ROLE_ADMIN' => 'Администратор', 'ROLE_USER' => 'Пользователь'];
+		$roles = ['ROLE_SUPER_ADMIN' => 'Разработчик', 'ROLE_ADMIN' => 'Администратор', 'ROLE_USER' => 'Участник'];
 		if(array_key_exists($role, $roles))
 		{
 			return $roles[$role];

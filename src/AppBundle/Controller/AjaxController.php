@@ -20,9 +20,9 @@
 	class AjaxController extends Controller
 	{
 		/**
-		 * @Route("/stats", name="ajax_shops_stats")
+		 * @Route("/ajax", name="ajax_user_stats")
 		 */
-		public function shopsStatsAction(Request $request)
+		public function userStatsAction(Request $request)
 		{
 
 		}

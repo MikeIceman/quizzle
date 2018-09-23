@@ -24,37 +24,44 @@ class Menu
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=50, nullable=true)
+     * @ORM\Column(name="title", type="string", length=50, nullable=true, options={"comment":"Menu item title"})
      */
     private $title;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="description", type="string", length=50, nullable=true, options={"comment":"Menu item description"})
+	 */
+	private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="string", length=50, nullable=true)
+     * @ORM\Column(name="icon", type="string", length=50, nullable=true, options={"comment":"Icon class from Font Awesome or other vendor package"})
      */
     private $icon;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="route", type="string", length=100, nullable=false)
+     * @ORM\Column(name="route", type="string", length=100, nullable=false, options={"comment":"Menu item route from base path"})
      */
     private $route;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="roles", type="array", nullable=false)
+     * @ORM\Column(name="roles", type="array", nullable=false, options={"comment":"User roles who can see this item"})
      */
     private $roles;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="order", type="integer", nullable=false)
+     * @ORM\Column(name="order", type="integer", nullable=false, options={"default":1000, "comment":"Sorting order"})
      */
-    private $order = '100';
+    private $order = '1000';
 
     /**
      * @var \Menu
@@ -107,6 +114,22 @@ class Menu
 	public function setTitle($title)
 	{
 		$this->title = $title;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
+	/**
+	 * @param string $description
+	 */
+	public function setDescription($description)
+	{
+		$this->description = $description;
 	}
 
 	/**
@@ -204,7 +227,6 @@ class Menu
 	{
 		$this->childs = $childs;
 	}
-
 
 
 }

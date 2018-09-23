@@ -16,9 +16,17 @@
 	/**
 	 * Class PersonalController
 	 * @package AppBundle\Controller
-	 * @Route("/my")
+	 * @Route("/personal")
 	 */
 	class PersonalController extends Controller
 	{
-
+		/**
+		 * @Route("/", name="personal")
+		 */
+		public function indexAction(Request $request)
+		{
+			return $this->render('default/index.html.twig', [
+				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+			]);
+		}
 	}
