@@ -15,9 +15,9 @@
 	{
 		public function buildForm(FormBuilderInterface $builder, array $options)
 		{
-			$builder->add('firstname', null, ['label' => 'Имя']);
-			$builder->add('lastname', null, ['label' => 'Фамилия']);
-			$builder->add('phone', null, ['label' => 'Телефон']);
+			$builder->add('firstname', null, ['label' => 'Имя'])
+				->add('lastname', null, ['label' => 'Фамилия'])
+				->add('phone', null, ['label' => 'Телефон']);
 		}
 
 		public function getParent()

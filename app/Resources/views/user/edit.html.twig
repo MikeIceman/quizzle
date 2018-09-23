@@ -1,0 +1,80 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Редактирование пользователя</h2>
+                </header>
+                <div class="card-body">
+
+                    {% form_theme edit_form 'form/quizzle_horizontal_layout.html.twig' %}
+
+                    {{ form_start(edit_form, {'attr': {'class': 'form-bordered'}}) }}
+
+                        {{ form_errors(edit_form) }}
+
+                        {{ form_row(edit_form.username) }}
+                        {{ form_row(edit_form.email) }}
+                        {{ form_row(edit_form.phone) }}
+
+                        {{ form_rest(edit_form) }}
+
+                        <div class="form-group row">
+                            <div class="col-md-3 m-auto text-center">
+                                <input type="submit" class="btn btn-success" value="Сохранить пользователя" />
+                            </div>
+                        </div>
+
+                    {{ form_end(edit_form) }}
+
+                    {{ form_start(delete_form) }}
+                        <div class="form-group row mt-3">
+                            <div class="col-md-3 m-auto text-center">
+                                <input type="submit" data-user-delete class="btn btn-danger" value="Удалить пользователя" />
+                            </div>
+                        </div>
+                    {{ form_end(delete_form) }}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        (function($) {
+
+            'use strict';
+
+            $(function() {
+                $('[data-user-delete]').on('click', function(e){
+                    e.preventDefault();
+                    if(confirm('Вы уверены?'))
+                    {
+                        return true;
+                    }
+                });
+            });
+
+        }).apply(this, [jQuery]);
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <header class="page-header">
+        <h2>Редактирование пользователя</h2>
+
+        <div class="right-wrapper text-right pr-5">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="{{ path('dashboard') }}" title="Рабочий стол">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li><a href="{{ path('user_index') }}">Управление пользователями</a></li>
+            </ol>
+        </div>
+    </header>
+{% endblock %}
