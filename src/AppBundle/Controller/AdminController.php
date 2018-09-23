@@ -34,7 +34,7 @@
 		{
 			$user = $this->container->get('security.token_storage')->getToken()->getUser();
 			$role = $user->getRoleDescription($user->getHighestRole());
-			return $this->render('dashboard/header.html.twig', [
+			return $this->render('default/header.html.twig', [
 				'user' => $user,
 				'role' => $role
 			]);
@@ -61,11 +61,7 @@
 
 		public function renderBreadcrumbsAction()
 		{
-			return $this->render('dashboard/breadcrumbs.html.twig');
+			return $this->render('default/breadcrumbs.html.twig');
 		}
 
-		public function renderAsideAction()
-		{
-			return $this->render('dashboard/aside.html.twig');
-		}
 	}
