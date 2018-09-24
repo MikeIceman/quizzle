@@ -52,7 +52,7 @@
 		private $prizeType;
 
 		/**
-		 * @var decimal
+		 * @var float
 		 *
 		 * @ORM\Column(name="prize_amount", type="decimal", precision=6, scale=2, nullable=true, options={"default" : 0, "comment":"Bonus or cash amount, prize cost if item winned"})
 		 */

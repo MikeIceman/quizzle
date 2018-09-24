@@ -45,7 +45,7 @@
 		private $type;
 
 		/**
-		 * @var decimal
+		 * @var float
 		 *
 		 * @ORM\Column(name="operation_amount", type="decimal", precision=6, scale=2, nullable=true, options={"default" : 0, "comment": "Operation amount"})
 		 */
@@ -111,7 +111,7 @@
 		}
 
 		/**
-		 * @return decimal
+		 * @return float
 		 */
 		public function getAmount()
 		{
@@ -119,7 +119,7 @@
 		}
 
 		/**
-		 * @param decimal $amount
+		 * @param float $amount
 		 */
 		public function setAmount($amount)
 		{

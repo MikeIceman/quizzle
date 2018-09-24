@@ -49,7 +49,7 @@
 		private $image;
 
 		/**
-		 * @var decimal
+		 * @var float
 		 *
 		 * @ORM\Column(name="cost", type="decimal", precision=6, scale=2, nullable=true, options={"default" : 0, "comment": "Item cost"})
 		 */
@@ -123,7 +123,7 @@
 		}
 
 		/**
-		 * @return decimal
+		 * @return float
 		 */
 		public function getCost()
 		{
@@ -131,7 +131,7 @@
 		}
 
 		/**
-		 * @param decimal $cost
+		 * @param float $cost
 		 */
 		public function setCost($cost)
 		{
