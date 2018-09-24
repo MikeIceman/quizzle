@@ -61,6 +61,12 @@
                                 <span>Пользователи</span>
                             </a>
                         </li>
+                        <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
+                            <a class="nav-link" href="{{ path('prize_index') }}">
+                                <i class="fa fa-gift" aria-hidden="true"></i>
+                                <span>Список призов</span>
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
                 {# TODO: Hardcoded while menu tree is not filled in database

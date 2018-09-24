@@ -7,12 +7,14 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: ru
-    min_loyalty_bonus: 10
-    max_loyalty_bonus: 500
-    min_cash_bonus: 1
-    max_cash_bonus: 20
+    winwheel:
+        min_loyalty_bonus: 50
+        max_loyalty_bonus: 500
+        min_cash_bonus: 10
+        max_cash_bonus: 50
+        spin_delay: 60  # Spin delay in seconds (60s = 1min)
+        segments_count: 12 # Wheel segments count
     loyalty_to_cash_rate: 0.1
-    winwheel_spin_delay: 60000 # Spin delay in milliseconds (60000ms = 60s = 1min)
     max_payouts_daily: 1000 # Maximum payouts per day
 
 framework:
@@ -45,6 +47,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        winwheel: %winwheel%
 
 # Doctrine Configuration
 doctrine:

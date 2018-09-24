@@ -1,0 +1,98 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Список призов</h2>
+            </header>
+            <div class="card-body">
+                <table class="table table-bordered table-striped datatable" id="datatable-default">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Заголовок</th>
+                            <th>Описание</th>
+                            <th>Изображение</th>
+                            <th>Цена</th>
+                            <th>Остаток</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for prize in prizes %}
+                        <tr>
+                            <td><a href="{{ path('prize_show', { 'id': prize.id }) }}">{{ prize.id }}</a></td>
+                            <td>{{ prize.title }}</td>
+                            <td>{{ prize.description }}</td>
+                            <td><img src="{{ asset(prize.image) }}" alt="{{ prize.title }}" class="img-fluid" /></td>
+                            <td>{{ prize.cost }}</td>
+                            <td>{{ prize.quantity }}</td>
+                            <td class="text-center" style="white-space: nowrap">
+                                <a href="{{ path('prize_show', { 'id': prize.id }) }}" title="Детали" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('prize_edit', { 'id': prize.id }) }}" title="Редактировать" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
+                                <a href="{{ path('prize_delete', { 'id': prize.id }) }}" title="Удалить" class="btn btn-xs btn-danger" data-user-delete><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="row mt-3">
+                    <div class="col-md-3 m-auto">
+                        <a class="btn btn-default" href="{{ path('prize_new') }}">Создать новый приз</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        (function($) {
+
+            'use strict';
+
+            var datatableInit = function() {
+
+                $('.datatable').dataTable({
+                    // dom: '<"row"<"col-lg-6"l><"col-lg-6"f>><"table-responsive"t>p'
+                });
+
+            };
+
+            $(function() {
+                datatableInit();
+
+                $('[data-user-delete]').on('click', function(e){
+                    e.preventDefault();
+                    if(confirm('Вы уверены?'))
+                    {
+                        return true;
+                    }
+                });
+            });
+
+        }).apply(this, [jQuery]);
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <header class="page-header">
+        <h2>Список призов</h2>
+
+        <div class="right-wrapper text-right pr-5">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="{{ path('dashboard') }}" title="Рабочий стол">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </header>
+{% endblock %}
+
+{% block title %}Список призов{% endblock %}

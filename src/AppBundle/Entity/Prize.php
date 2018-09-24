@@ -9,6 +9,7 @@
 	namespace AppBundle\Entity;
 
 	use Doctrine\ORM\Mapping as ORM;
+	use JsonSerializable;
 
 	/**
 	 * Available prizes
@@ -16,7 +17,7 @@
 	 * @ORM\Table(name="prizes")
 	 * @ORM\Entity
 	 */
-	class Prize
+	class Prize implements JsonSerializable
 	{
 		/**
 		 * @var integer
@@ -30,28 +31,28 @@
 		/**
 		 * @var string
 		 *
-		 * @ORM\Column(name="title", type="string", length=50, nullable=true, options={"comment":"Item title"})
+		 * @ORM\Column(name="title", type="string", length=50, nullable=true, options={"comment": "Item title"})
 		 */
 		private $title;
 
 		/**
 		 * @var string
 		 *
-		 * @ORM\Column(name="desctiption", type="string", length=250, nullable=true, options={"comment":"Item title"})
+		 * @ORM\Column(name="description", type="text", nullable=true, options={"comment": "Item desctiption"})
 		 */
-		private $desctiption;
+		private $description;
 
 		/**
 		 * @var string
 		 *
-		 * @ORM\Column(name="image", type="string", length=50, nullable=true, options={"comment":"Item image"})
+		 * @ORM\Column(name="image", type="string", length=50, nullable=true, options={"comment": "Item image"})
 		 */
 		private $image;
 
 		/**
 		 * @var float
 		 *
-		 * @ORM\Column(name="cost", type="decimal", precision=6, scale=2, nullable=true, options={"default" : 0, "comment": "Item cost"})
+		 * @ORM\Column(name="cost", type="decimal", precision=6, scale=2, nullable=true, options={"default" : 0, "comment": "Item cost in $"})
 		 */
 		private $cost;
 
@@ -93,17 +94,17 @@
 		/**
 		 * @return string
 		 */
-		public function getDesctiption()
+		public function getDescription()
 		{
-			return $this->desctiption;
+			return $this->description;
 		}
 
 		/**
-		 * @param string $desctiption
+		 * @param string $description
 		 */
-		public function setDesctiption($desctiption)
+		public function setDescription($description)
 		{
-			$this->desctiption = $desctiption;
+			$this->desctiption = $description;
 		}
 
 		/**
@@ -154,5 +155,16 @@
 			$this->quantity = $quantity;
 		}
 
+		public function jsonSerialize()
+		{
+			return array(
+				'id' => $this->id,
+				'title' => $this->title,
+				'description' => $this->desctiption,
+				'image' => $this->image,
+				'cost' => $this->cost,
+				'quantity' => $this->quantity
+			);
+		}
 
 	}
