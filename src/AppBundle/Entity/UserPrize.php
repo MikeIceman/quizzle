@@ -13,7 +13,7 @@
 	/**
 	 * Wined prizes
 	 *
-	 * @ORM\Table(name="user_prizes", indexes={@ORM\Index(name="FK_user_id", columns={"user_id"})})
+	 * @ORM\Table(name="user_prizes", indexes={@ORM\Index(name="FK_prize_id", columns={"prize_id"})})
 	 * @ORM\Entity
 	 */
 	class UserPrize
@@ -57,6 +57,16 @@
 		 * @ORM\Column(name="status", type="string", nullable=false, columnDefinition="enum('pending', 'sent', 'received', 'rejected')", options={"default": "pending", "comment":"Current delivery status"})
 		 */
 		private $status;
+
+		/**
+		 * @var \Prize
+		 *
+		 * @ORM\ManyToOne(targetEntity="Prize")
+		 * @ORM\JoinColumns({
+		 *   @ORM\JoinColumn(name="prize_id", referencedColumnName="id")
+		 * })
+		 */
+		private $prize;
 
 
 		public function __construct() {
@@ -141,6 +151,22 @@
 		public function setStatus($status)
 		{
 			$this->status = $status;
+		}
+
+		/**
+		 * @return \Prize
+		 */
+		public function getPrize()
+		{
+			return $this->prize;
+		}
+
+		/**
+		 * @param \Prize $prize
+		 */
+		public function setPrize($prize)
+		{
+			$this->prize = $prize;
 		}
 
 

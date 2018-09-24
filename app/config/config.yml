@@ -13,6 +13,7 @@ parameters:
     max_cash_bonus: 20
     loyalty_to_cash_rate: 0.1
     winwheel_spin_delay: 60000 # Spin delay in milliseconds (60000ms = 60s = 1min)
+    max_payouts_daily: 1000 # Maximum payouts per day
 
 framework:
     #esi: ~
