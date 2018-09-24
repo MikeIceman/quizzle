@@ -17,8 +17,8 @@
                                     <div class="summary">
                                         <h4 class="title">Проведено розыгрышей</h4>
                                         <div class="info">
-                                            <strong class="amount">1281</strong>
-                                            <span class="text-primary">(1 новый)</span>
+                                            <strong class="amount">{{ spins }}</strong>
+                                            {% if new_spins > 0 %}<span class="text-primary">({{ new_spins }} новых)</span>{% endif %}
                                         </div>
                                     </div>
                                     <div class="summary-footer">
@@ -30,7 +30,7 @@
                     </section>
                 </div>
                 <div class="col-xl-6">
-                    <section class="card card-featured-left card-featured-secondary">
+                    <section class="card card-featured-left card-featured-success">
                         <div class="card-body">
                             <div class="widget-summary">
                                 <div class="widget-summary-col widget-summary-col-icon">
@@ -42,7 +42,7 @@
                                     <div class="summary">
                                         <h4 class="title">Ваш баланс</h4>
                                         <div class="info">
-                                            <strong class="amount">$ 1,890.30</strong>
+                                            <strong class="amount">{{ balance|money(2) }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
@@ -56,7 +56,7 @@
             </div>
             <div class="row">
                 <div class="col-xl-6">
-                    <section class="card card-featured-left card-featured-tertiary mb-3">
+                    <section class="card card-featured-left card-featured-warning mb-3">
                         <div class="card-body">
                             <div class="widget-summary">
                                 <div class="widget-summary-col widget-summary-col-icon">
@@ -68,7 +68,7 @@
                                     <div class="summary">
                                         <h4 class="title">Победителей сегодня</h4>
                                         <div class="info">
-                                            <strong class="amount">38</strong>
+                                            <strong class="amount">{{ winners }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
@@ -92,7 +92,7 @@
                                     <div class="summary">
                                         <h4 class="title">Всего участников</h4>
                                         <div class="info">
-                                            <strong class="amount">3765</strong>
+                                            <strong class="amount">{{ members_count }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">

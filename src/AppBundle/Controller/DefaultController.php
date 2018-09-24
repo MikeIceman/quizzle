@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity as Entity;
+use AppBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -14,8 +15,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+	    $repository = $this->getDoctrine()->getRepository(User::class);
+	    $membersCount = $repository->createQueryBuilder('u')
+		    ->select('count(u.id)')
+		    ->getQuery()
+		    ->getSingleScalarResult();
+
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+	        'spins' => 1281,
+	        'new_spins' => 2,
+	        'members_count' => $membersCount,
+	        'winners' => 38,
+	        'balance' => 1890.30
         ]);
     }
 
@@ -29,7 +41,7 @@ class DefaultController extends Controller
 		]);
 	}
 
-	public function renderSidebarAction()
+	public function renderSidebarAction($currentRoute = 'homepage')
 	{
 		$items = $this->getDoctrine()->getRepository(Entity\Menu::class)->findAll();
 		$menu = [];
@@ -44,7 +56,8 @@ class DefaultController extends Controller
 		}
 
 		return $this->render('default/sidebar.html.twig', [
-			'menu' => $menu
+			'menu' => $menu,
+			'curroute' => $currentRoute
 		]);
 	}
 

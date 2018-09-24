@@ -64,8 +64,7 @@
             {{ render(controller('AppBundle:Default:renderHeader')) }}
 
             <div class="inner-wrapper">
-                {{ render(controller('AppBundle:Admin:renderSidebar')) }}
-
+                {{ render(controller('AppBundle:Default:renderSidebar', {currentRoute: app.request.attributes.get('_route')})) }}
                 <section role="main" class="content-body">
                     {% block breadcrumbs %}{{ render(controller('AppBundle:Default:renderBreadcrumbs')) }}{% endblock %}
                     <!-- start: page -->
