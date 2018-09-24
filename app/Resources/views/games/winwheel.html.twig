@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <div class="card-body">
+                <p>
+                    To be deployed...
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <header class="page-header">
+        <h2>Колесо фортуны</h2>
+
+        <div class="right-wrapper text-right pr-5">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="{{ path('homepage') }}" title="Главная страница">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li><a href="{{ path('games') }}">Игры</a></li>
+            </ol>
+        </div>
+    </header>
+{% endblock %}
+
+{% block title %}Колесо фортуны{% endblock %}

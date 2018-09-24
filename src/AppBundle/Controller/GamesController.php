@@ -35,7 +35,7 @@
 		 */
 		public function winwheelAction(Request $request)
 		{
-			return $this->render('games/index.html.twig', [
+			return $this->render('games/winwheel.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 			]);
 		}
@@ -45,7 +45,7 @@
 	 */
 		public function rouletteAction(Request $request)
 		{
-			return $this->render('games/index.html.twig', [
+			return $this->render('games/roulette.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 			]);
 		}
@@ -55,7 +55,7 @@
 		 */
 		public function slotsAction(Request $request)
 		{
-			return $this->render('games/index.html.twig', [
+			return $this->render('games/slots.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 			]);
 		}
@@ -65,7 +65,7 @@
 		 */
 		public function lottoAction(Request $request)
 		{
-			return $this->render('games/index.html.twig', [
+			return $this->render('games/lotto.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 			]);
 		}
