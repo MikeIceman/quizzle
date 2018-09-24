@@ -5,24 +5,23 @@
         <div class="col-md-12">
             <div class="row mb-3">
                 <div class="col-xl-6">
-                    <section class="card card-featured-left card-featured-primary mb-3">
+                    <section class="card card-featured-left card-featured-danger mb-3">
                         <div class="card-body">
                             <div class="widget-summary">
                                 <div class="widget-summary-col widget-summary-col-icon">
-                                    <div class="summary-icon bg-primary">
+                                    <div class="summary-icon bg-danger">
                                         <i class="far fa-star"></i>
                                     </div>
                                 </div>
                                 <div class="widget-summary-col">
                                     <div class="summary">
-                                        <h4 class="title">Проведено розыгрышей</h4>
+                                        <h4 class="title">Бонусные баллы</h4>
                                         <div class="info">
-                                            <strong class="amount">{{ spins }}</strong>
-                                            {% if new_spins > 0 %}<span class="text-primary">({{ new_spins }} новых)</span>{% endif %}
+                                            <strong class="amount">{{ bonuses | number(2) }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a class="text-muted text-uppercase" href="#">(результаты розыгрышей)</a>
+                                        <a class="text-muted text-uppercase" href="#">(конвертировать)</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +53,32 @@
                     </section>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-3">
+                <div class="col-xl-6">
+                    <section class="card card-featured-left card-featured-primary mb-3">
+                        <div class="card-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fas fa-dice"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Проведено розыгрышей</h4>
+                                        <div class="info">
+                                            <strong class="amount">{{ spins }}</strong>
+                                            {% if new_spins > 0 %}<span class="text-primary">({{ new_spins }} новых)</span>{% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="#">(результаты розыгрышей)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
                 <div class="col-xl-6">
                     <section class="card card-featured-left card-featured-warning mb-3">
                         <div class="card-body">
@@ -73,6 +97,32 @@
                                     </div>
                                     <div class="summary-footer">
                                         <a class="text-muted text-uppercase" href="#">(подробнее)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <section class="card card-featured-left card-featured-info">
+                        <div class="card-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-info">
+                                        <i class="far fa-money-bill-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Выплачено сегодня</h4>
+                                        <div class="info">
+                                            <strong class="amount">{{ payouts | money(2) }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="#">(мои выплаты)</a>
                                     </div>
                                 </div>
                             </div>

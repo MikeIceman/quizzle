@@ -12,6 +12,7 @@ parameters:
     min_cash_bonus: 1
     max_cash_bonus: 20
     loyalty_to_cash_rate: 0.1
+    winwheel_spin_delay: 60000 # Spin delay in milliseconds (60000ms = 60s = 1min)
 
 framework:
     #esi: ~
@@ -60,6 +61,8 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #path: '%database_path%'
+        mapping_types:
+            enum: string
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'

@@ -18,6 +18,7 @@
 			return array(
 				new TwigFilter('md5', array($this, 'md5Filter')),
 				new TwigFilter('money', array($this, 'moneyFilter')),
+				new TwigFilter('number', array($this, 'numberFilter')),
 			);
 		}
 
@@ -32,5 +33,10 @@
 			$price = '$'.$price;
 
 			return $price;
+		}
+
+		public function numberFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
+		{
+			return number_format($number, $decimals, $decPoint, $thousandsSep);
 		}
 	}

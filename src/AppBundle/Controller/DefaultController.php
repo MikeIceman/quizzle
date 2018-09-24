@@ -21,13 +21,17 @@ class DefaultController extends Controller
 		    ->getQuery()
 		    ->getSingleScalarResult();
 
+	    $user = $this->get('security.token_storage')->getToken()->getUser();
+
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 	        'spins' => 1281,
 	        'new_spins' => 2,
 	        'members_count' => $membersCount,
 	        'winners' => 38,
-	        'balance' => 1890.30
+	        'balance' => $user->getBalance(),
+	        'bonuses' => $user->getBonuses(),
+	        'payouts' => 10237.28
         ]);
     }
 

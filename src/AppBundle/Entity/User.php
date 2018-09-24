@@ -28,7 +28,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
 	 *
-	 * @Assert\NotBlank(message="Пожалуйста, введите своё имя", groups={"Registration", "Profile"})
+	 * @Assert\NotBlank(message="Пожалуйста, введите имя", groups={"Registration", "Profile"})
 	 * @Assert\Length(
 	 *     min=3,
 	 *     max=255,
@@ -44,7 +44,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      *
-     * @Assert\NotBlank(message="Пожалуйста, введите свою фамилию", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Пожалуйста, введите фамилию", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
      *     max=255,
@@ -60,7 +60,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      *
-     * @Assert\NotBlank(message="Пожалуйста, введите свой телефон", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Пожалуйста, введите телефон", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=10,
      *     max=14,
@@ -70,6 +70,41 @@ class User extends BaseUser
      * )
      */
     private $phone;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="bonus_balance", type="decimal", precision=10, scale=2, nullable=true, options={"default" : 0, "comment":"Bonus balance"})
+	 */
+	private $bonuses;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="cash_balance", type="decimal", precision=10, scale=2, nullable=true, options={"default" : 0, "comment":"Cash balance"})
+	 */
+	private $balance;
+
+	/**
+	 * @var \WinWheelSpin
+	 *
+	 * @ORM\OneToMany(targetEntity="WinWheelSpin", mappedBy="user")
+	 */
+	private $spins;
+
+	/**
+	 * @var \UserPrize
+	 *
+	 * @ORM\OneToMany(targetEntity="UserPrize", mappedBy="user")
+	 */
+	private $prizes;
+
+	/**
+	 * @var \Operation
+	 *
+	 * @ORM\OneToMany(targetEntity="Operation", mappedBy="user")
+	 */
+	private $operations;
 
 	public function __construct()
 	{
@@ -125,6 +160,71 @@ class User extends BaseUser
 	{
 		$this->phone = $phone;
 	}
+
+	/**
+	 * @return \WinWheelSpin
+	 */
+	public function getSpins()
+	{
+		return $this->spins;
+	}
+
+	/**
+	 * @param \WinWheelSpin $spins
+	 */
+	public function setSpins($spins)
+	{
+		$this->spins = $spins;
+	}
+
+	/**
+	 * @return \UserPrize
+	 */
+	public function getPrizes()
+	{
+		return $this->prizes;
+	}
+
+	/**
+	 * @param \UserPrize $prizes
+	 */
+	public function setPrizes($prizes)
+	{
+		$this->prizes = $prizes;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBonuses()
+	{
+		return $this->bonuses;
+	}
+
+	/**
+	 * @param string $bonuses
+	 */
+	public function setBonuses($bonuses)
+	{
+		$this->bonuses = $bonuses;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBalance()
+	{
+		return $this->balance;
+	}
+
+	/**
+	 * @param string $balance
+	 */
+	public function setBalance($balance)
+	{
+		$this->balance = $balance;
+	}
+
 
 	/**
 	 * @return bool|mixed
