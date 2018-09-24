@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="pricing-table row no-gutters mt-3 mb-3">
+        <div class="col-lg-6 col-sm-12">
+            <div class="plan most-popular">
+                <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Хит!</div></div>
+                <h3>Колесо фортуны<span style="background: url(/images/games/winwheel.png) no-repeat center center; background-size: cover;"></span></h3>
+                <ul>
+                    <li><strong>$1-$20</strong> Денежный приз</li>
+                    <li><strong>10-500</strong> Бонусов на счёт</li>
+                    <li><strong>10</strong> Ценных призов</li>
+                    <li><strong>Каждый час</strong> участие в розыгрыше</li>
+                </ul>
+                <a class="btn btn-lg btn-success" href="{{ path('games_winwheel') }}">Играть</a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 text-center">
+            <div class="plan">
+                <h3>Рулетка<span style="background: url(/images/games/roulette.png) no-repeat center center; background-size: cover;"></span></h3>
+                <ul>
+                    <li><strong>$0.1-$50</strong> Размер ставки</li>
+                    <li><strong>x10</strong> Приветственный бонус</li>
+                    <li><strong>5000</strong> участников</li>
+                    <li><strong>Повышенные</strong> шансы на выигрыш</li>
+                </ul>
+                <a class="btn btn-lg btn-default" href="{{ path('games_roulette') }}">Играть</a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <div class="plan">
+                <h3>Игровые автоматы<span style="background: url(/images/games/slots.png) no-repeat center center; background-size: cover;"></span></h3>
+                <ul>
+                    <li><strong>x100</strong> Приветственный бонус</li>
+                    <li><strong>от $0.1</strong> Размер ставки</li>
+                    <li><strong>до 48</strong> Выигрышных комбинаций</li>
+                    <li><strong>$100,000</strong> Джек-пот</li>
+                </ul>
+                <a class="btn btn-lg btn-default" href="{{ path('games_slots') }}">Играть</a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <div class="plan">
+                <h3>Лото 6 из 36<span style="background: url(/images/games/lotto.png) no-repeat center center; background-size: cover;"></span></h3>
+                <ul>
+                    <li><strong>x1000</strong> приветственный бонус</li>
+                    <li><strong>от $1</strong> Стоимость участия</li>
+                    <li><strong>Ежедневные</strong> розыгрыши</li>
+                    <li><strong>$5,000,000</strong> Джек-пот</li>
+                </ul>
+                <a class="btn btn-lg btn-default" href="{{ path('games_lotto') }}">Купить билет</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <header class="page-header">
+        <h2>Игры</h2>
+
+        <div class="right-wrapper text-right pr-5">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="{{ path('homepage') }}" title="Главная страница">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </header>
+{% endblock %}
+
+{% block title %}Игры{% endblock %}

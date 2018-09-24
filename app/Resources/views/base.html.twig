@@ -67,7 +67,7 @@
                 {{ render(controller('AppBundle:Admin:renderSidebar')) }}
 
                 <section role="main" class="content-body">
-                    {{ render(controller('AppBundle:Default:renderBreadcrumbs')) }}
+                    {% block breadcrumbs %}{{ render(controller('AppBundle:Default:renderBreadcrumbs')) }}{% endblock %}
                     <!-- start: page -->
                     {% block body %}
 

@@ -7,6 +7,11 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: ru
+    min_loyalty_bonus: 10
+    max_loyalty_bonus: 500
+    min_cash_bonus: 1
+    max_cash_bonus: 20
+    loyalty_to_cash_rate: 0.1
 
 framework:
     #esi: ~
