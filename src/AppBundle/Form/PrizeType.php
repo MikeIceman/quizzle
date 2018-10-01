@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class PrizeType extends AbstractType
 {
@@ -13,7 +14,12 @@ class PrizeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')->add('image')->add('cost')->add('quantity');
+        $builder
+	        ->add('title', null, ['label' => 'Заголовок'])
+	        ->add('description', null, ['label' => 'Описание'])
+	        ->add('image', null, ['label' => 'Изображение'])
+	        ->add('cost', NumberType::class, ['label' => 'Цена'])
+	        ->add('quantity', NumberType::class, ['label' => 'Остаток']);
     }/**
      * {@inheritdoc}
      */

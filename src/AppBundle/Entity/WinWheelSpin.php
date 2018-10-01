@@ -58,9 +58,21 @@
 		 */
 		private $prizeAmount;
 
+		/**
+		 * @var \Prize
+		 *
+		 * @ORM\ManyToOne(targetEntity="Prize")
+		 * @ORM\JoinColumns({
+		 *   @ORM\JoinColumn(name="prize_id", referencedColumnName="id", nullable=true)
+		 * })
+		 */
+		private $prize;
+
 
 		public function __construct() {
-
+			$this->setDateSpinned(new \DateTime("now"));
+			$this->setPrizeType('nothing');
+			$this->setPrizeAmount(0);
 		}
 
 		/**
@@ -69,14 +81,6 @@
 		public function getId()
 		{
 			return $this->id;
-		}
-
-		/**
-		 * @param int $id
-		 */
-		public function setId($id)
-		{
-			$this->id = $id;
 		}
 
 		/**
@@ -141,6 +145,22 @@
 		public function setPrizeAmount($prizeAmount)
 		{
 			$this->prizeAmount = $prizeAmount;
+		}
+
+		/**
+		 * @return \Prize
+		 */
+		public function getPrize()
+		{
+			return $this->prize;
+		}
+
+		/**
+		 * @param \Prize $prize
+		 */
+		public function setPrize($prize)
+		{
+			$this->prize = $prize;
 		}
 
 

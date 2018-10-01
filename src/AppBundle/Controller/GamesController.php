@@ -46,10 +46,9 @@
 				['id' => 'DESC']
 			);
 
-
 			if(!empty($lastSpin))
 			{
-				$lastSpinDate = date("r", $lastSpin->getDateSpinned());
+				$lastSpinDate = $lastSpin->getDateSpinned()->format("r");
 			}
 
 			$this->get('session')->set('last_spin_date', $lastSpinDate);
