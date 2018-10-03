@@ -68,9 +68,20 @@
 		 */
 		private $prize;
 
+		/**
+		 * @var \WinWheelSpin
+		 *
+		 * @ORM\ManyToOne(targetEntity="WinWheelSpin")
+		 * @ORM\JoinColumns({
+		 *   @ORM\JoinColumn(name="spin_id", referencedColumnName="id", nullable=true)
+		 * })
+		 */
+		private $spin;
+
 
 		public function __construct() {
-
+			$this->setDateAdded(new \DateTime());
+			$this->setDateUpdated(new \DateTime());
 		}
 
 		/**
@@ -169,6 +180,21 @@
 			$this->prize = $prize;
 		}
 
+		/**
+		 * @return \WinWheelSpin
+		 */
+		public function getSpin()
+		{
+			return $this->spin;
+		}
+
+		/**
+		 * @param \WinWheelSpin $spin
+		 */
+		public function setSpin($spin)
+		{
+			$this->spin = $spin;
+		}
 
 
 	}

@@ -29,4 +29,14 @@
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 			]);
 		}
+
+		/**
+		 * @Route("/operations/", name="personal_operations")
+		 */
+		public function operationsAction(Request $request)
+		{
+			return $this->render('personal/index.html.twig', [
+				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+			]);
+		}
 	}

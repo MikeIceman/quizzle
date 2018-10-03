@@ -40,7 +40,7 @@
 		/**
 		 * @var string
 		 *
-		 * @ORM\Column(name="operation_type", type="string", nullable=false, columnDefinition="enum('win', 'exchange', 'deposit', 'withdrawal')", options={"default": "win", "comment": "Operation type (win, exchange - bonus balance; deposit, withdrawal - cash balance)"})
+		 * @ORM\Column(name="operation_type", type="string", nullable=false, columnDefinition="enum('win', 'exchange', 'bonus', 'withdrawal')", options={"default": "win", "comment": "Operation type (win, exchange - bonus balance; deposit, withdrawal - cash balance)"})
 		 */
 		private $type;
 

@@ -68,11 +68,19 @@
 		 */
 		private $prize;
 
+		/**
+		 * @var string
+		 *
+		 * @ORM\Column(name="status", type="string", nullable=false, columnDefinition="enum('pending', 'accepted', 'rejected')", options={"default": "pending", "comment":"Spin status"})
+		 */
+		private $status;
+
 
 		public function __construct() {
 			$this->setDateSpinned(new \DateTime("now"));
 			$this->setPrizeType('nothing');
 			$this->setPrizeAmount(0);
+			$this->setStatus('pending');
 		}
 
 		/**
@@ -161,6 +169,22 @@
 		public function setPrize($prize)
 		{
 			$this->prize = $prize;
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getStatus()
+		{
+			return $this->status;
+		}
+
+		/**
+		 * @param string $status
+		 */
+		public function setStatus($status)
+		{
+			$this->status = $status;
 		}
 
 
