@@ -155,6 +155,15 @@
 			$this->quantity = $quantity;
 		}
 
+		/**
+		 * @param int $quantity
+		 */
+		public function updateQuantity($quantity)
+		{
+			$this->quantity += $quantity;
+		}
+
+
 		public function jsonSerialize()
 		{
 			return array(

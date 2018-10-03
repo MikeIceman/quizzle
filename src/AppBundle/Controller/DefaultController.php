@@ -31,7 +31,8 @@ class DefaultController extends Controller
 	        'winners' => 38,
 	        'balance' => $user->getBalance(),
 	        'bonuses' => $user->getBonuses(),
-	        'payouts' => 10237.28
+	        'payouts' => 10237.28,
+	        'convert_rate' => $this->container->getParameter('loyalty_to_cash_rate')
         ]);
     }
 

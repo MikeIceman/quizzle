@@ -20,7 +20,30 @@
                             <span>Главная страница</span>
                         </a>
                     </li>
-                    <li class="nav-parent {{ curroute starts with 'games' ? 'nav-expanded nav-active' }}">
+                    <li class="nav-parent {{ curroute starts with 'personal_' ? 'nav-expanded nav-active' }}">
+                        <a class="nav-link" href="#"><!-- {{ path('personal_index') }} -->
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Личный кабинет</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="{{ curroute == 'personal_winnings' ? 'nav-active' }}">
+                                <a class="nav-link" href="{{ path('personal_winnings') }}">
+                                    Мои выигрыши
+                                </a>
+                            </li>
+                            <li class="{{ curroute == 'personal_prizes' ? 'nav-active' }}">
+                                <a class="nav-link" href="{{ path('personal_prizes') }}">
+                                    Мои призы
+                                </a>
+                            </li>
+                            <li class="{{ curroute == 'personal_withdrawals' ? 'nav-active' }}">
+                                <a class="nav-link" href="{{ path('personal_withdrawals') }}">
+                                    Вывод средств
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent {{ curroute starts with 'games_' ? 'nav-expanded nav-active' }}">
                         <a class="nav-link" href="{{ path('games') }}">
                             <i class="fas fa-dice" aria-hidden="true"></i>
                             <span>Игры</span>
@@ -49,23 +72,25 @@
                         </ul>
                     </li>
                     {% if is_granted('ROLE_ADMIN') != false %}
-                        <li class="{{ curroute == 'dashboard' ? 'nav-active' }}">
+                        <li class="nav-parent {{ curroute == 'dashboard' or curroute starts with 'user_' or curroute starts with 'prize_' ? 'nav-expanded nav-active' }}">
                             <a class="nav-link" href="{{ path('dashboard') }}">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                 <span>Админпанель</span>
                             </a>
-                        </li>
-                        <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
-                            <a class="nav-link" href="{{ path('user_index') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>Пользователи</span>
-                            </a>
-                        </li>
-                        <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
-                            <a class="nav-link" href="{{ path('prize_index') }}">
-                                <i class="fa fa-gift" aria-hidden="true"></i>
-                                <span>Список призов</span>
-                            </a>
+                            <ul class="nav nav-children">
+                                <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
+                                    <a class="nav-link" href="{{ path('user_index') }}">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Пользователи</span>
+                                    </a>
+                                </li>
+                                <li class="{{ curroute starts with 'prize_' ? 'nav-active' }}">
+                                    <a class="nav-link" href="{{ path('prize_index') }}">
+                                        <i class="fa fa-gift" aria-hidden="true"></i>
+                                        <span>Список призов</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     {% endif %}
                 </ul>

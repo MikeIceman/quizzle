@@ -46,17 +46,19 @@
 				['id' => 'DESC']
 			);
 
-
 			if(!empty($lastSpin))
 			{
-				$lastSpinDate = date("r", $lastSpin->getDateSpinned());
+				$lastSpinDate = $lastSpin->getDateSpinned()->format("r");
 			}
 
-			$this->get('session')->set('last_spin_date', $lastSpinDate);
+			$nextSpinDate = date("r", strtotime('+'.$this->container->getParameter('winwheel')['spin_delay'].' seconds', strtotime($lastSpinDate)));
+
+			//$this->get('session')->set('last_spin_date', $lastSpinDate);
 
 			return $this->render('games/winwheel.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-				'last_spin' => $lastSpinDate
+				'last_spin' => $lastSpinDate,
+				'next_spin' => $nextSpinDate
 			]);
 		}
 

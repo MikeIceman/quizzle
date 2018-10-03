@@ -17,16 +17,60 @@
                                     <div class="summary">
                                         <h4 class="title">Бонусные баллы</h4>
                                         <div class="info">
-                                            <strong class="amount">{{ bonuses | number(2) }}</strong>
+                                            <strong class="amount" id="BonusAmount">{{ bonuses|number(2) }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a class="text-muted text-uppercase" href="#">(конвертировать)</a>
+                                        <a class="text-muted text-uppercase modal-with-zoom-anim" href="#ConvertDialog">(конвертировать)</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+                    <div id="ConvertDialog" class="zoom-anim-dialog modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Обменять деньги на баллы</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="modal-wrapper" id="ConvertDialogContent">
+                                    <form name="ConvertForm" action="" class="form-horizontal" autocomplete="off">
+                                        <div class="form-group row">
+                                            <label for="convertAmount" class="col-lg-3 control-label text-lg-right pt-2">Сумма</label>
+                                            <div class="input-group col-md-6">
+                                                <span class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="far fa-money-bill-alt"></i>
+                                                    </span>
+                                                </span>
+                                                <input class="form-control" id="convertAmount" placeholder="max: {{ balance | number(2) }}" type="text" data-max="{{ balance }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="convertReceive" class="col-lg-3 control-label text-lg-right pt-2">Получите</label>
+                                            <div class="input-group col-md-6">
+                                                <span class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                </span>
+                                                <input class="form-control" id="convertReceive" placeholder="0.00" type="text" readonly="readonly" value="0.00">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-success modal-confirm mr-2" id="ConfirmConvert">Обменять</button>
+                                        <button class="btn btn-danger modal-dismiss" id="DismissConvert">Отмена</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
                 </div>
                 <div class="col-xl-6">
                     <section class="card card-featured-left card-featured-success">
@@ -41,16 +85,49 @@
                                     <div class="summary">
                                         <h4 class="title">Ваш баланс</h4>
                                         <div class="info">
-                                            <strong class="amount">{{ balance|money(2) }}</strong>
+                                            <strong class="amount" id="BalanceAmount">{{ balance|money(2) }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a class="text-muted text-uppercase" href="#">(снять со счёта)</a>
+                                        <a class="text-muted text-uppercase modal-with-zoom-anim" href="#WithdrawalDialog">(снять со счёта)</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+                    <div id="WithdrawalDialog" class="zoom-anim-dialog modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Снять со счёта</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="modal-wrapper" id="ConvertDialogContent">
+                                    <form name="ConvertForm" action="" class="form-horizontal" autocomplete="off">
+                                        <div class="form-group row">
+                                            <label for="withdrawalAmount" class="col-lg-3 control-label text-lg-right pt-2">Сумма</label>
+                                            <div class="input-group col-md-6">
+                                                <span class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="far fa-money-bill-alt"></i>
+                                                    </span>
+                                                </span>
+                                                <input class="form-control" id="withdrawalAmount" placeholder="max: {{ balance | number(2) }}" type="text" data-max="{{ balance }}">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-success modal-confirm mr-2" id="ConfirmWithdrawal">Вывести</button>
+                                        <button class="btn btn-danger modal-dismiss" id="DismissWithdrawal">Отмена</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -80,7 +157,7 @@
                     </section>
                 </div>
                 <div class="col-xl-6">
-                    <section class="card card-featured-left card-featured-warning mb-3">
+                    <section class="card card-featured-left card-featured-warning">
                         <div class="card-body">
                             <div class="widget-summary">
                                 <div class="widget-summary-col widget-summary-col-icon">
@@ -106,7 +183,7 @@
             </div>
             <div class="row">
                 <div class="col-xl-6">
-                    <section class="card card-featured-left card-featured-info">
+                    <section class="card card-featured-left card-featured-info mb-3">
                         <div class="card-body">
                             <div class="widget-summary">
                                 <div class="widget-summary-col widget-summary-col-icon">
@@ -195,4 +272,206 @@
             </section>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        (function($) {
+
+            'use strict';
+
+            $(function() {
+                // On document loaded
+
+                //region Modals
+                $('.modal-with-zoom-anim').magnificPopup({
+                    type: 'inline',
+
+                    fixedContentPos: false,
+                    fixedBgPos: true,
+
+                    overflowY: 'auto',
+
+                    closeBtnInside: true,
+                    preloader: false,
+
+                    midClick: true,
+                    removalDelay: 300,
+                    mainClass: 'my-mfp-zoom-in',
+                    modal: true
+                });
+                $(document).on('click', '.modal-dismiss', function (e) {
+                    e.preventDefault();
+                    $.magnificPopup.close();
+                });
+                //endregion
+
+                //region Convert
+                $(document).on('change blur keyup', '#convertAmount', function(){
+                    var convertRate = {{ convert_rate }};
+                    var $this = $(this);
+                    var $calc = $('#convertReceive');
+                    var amount = parseFloat($this.val());
+                    if(!isNaN(amount) && amount) {
+                        $calc.val(amount/convertRate);
+                        if(amount > $this.data('max'))
+                        {
+                            $this.addClass('error');
+                            $('#ConfirmConvert').attr('disabled', 'disabled');
+                        }
+                        else
+                        {
+                            $this.removeClass('error');
+                            $('#ConfirmConvert').removeAttr('disabled');
+                        }
+                    }
+                    else
+                    {
+                        $this.addClass('error');
+                        $calc.val('0.00');
+                    }
+                });
+                $(document).on('click', '#ConfirmConvert', function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ path('ajax_balance_convert') }}',
+                        data: {amount: $('#convertAmount').val()},
+                        success: function(data){
+                            if(typeof data !== 'undefined' && data)
+                            {
+                                if(data.success)
+                                {
+                                    $('#BonusAmount').html(data.data.bonus_balance.toFixed(2));
+                                    $('#BalanceAmount').html('$' + data.data.balance.toFixed(2));
+                                    $('#convertAmount').data('max', data.data.balance).attr('placeholder', 'max: ' + data.data.balance.toFixed(2));
+                                    $('#withdrawalAmount').data('max', data.data.balance).attr('placeholder', 'max: ' + data.data.balance.toFixed(2));
+                                    new PNotify({
+                                        text: 'Баланс успешно обновлён',
+                                        type: 'success'
+                                    });
+                                }
+                                else
+                                {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: data.error + ': ' + data.message,
+                                        type: 'error'
+                                    });
+                                }
+                            } else {
+                                // Handle error
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                            }
+                        },
+                        error: function(){
+                            new PNotify({
+                                title: 'Error!',
+                                text: 'Something went wrong!',
+                                type: 'error'
+                            });
+                        },
+                        complete: function(){
+                            // Finally callback
+                            $('#convertAmount').val('').removeClass('error');
+                            $('#convertReceive').val('0.00');
+                            $('#ConfirmConvert').removeAttr('disabled');
+                            $.magnificPopup.close();
+                        }
+                    });
+                });
+                $(document).on('click', '#DismissConvert', function(){
+                    $('#convertAmount').val('').removeClass('error');
+                    $('#convertReceive').val('0.00');
+                    $('#ConfirmConvert').removeAttr('disabled');
+                });
+                //endregion
+
+                //region Withdrawal
+                $(document).on('click', '#ConfirmWithdrawal', function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ path('ajax_balance_withdrawal') }}',
+                        data: {amount: $('#withdrawalAmount').val()},
+                        success: function(data){
+                            if(typeof data !== 'undefined' && data)
+                            {
+                                if(data.success)
+                                {
+                                    $('#BalanceAmount').html('$' + data.data.balance.toFixed(2));
+                                    $('#convertAmount').data('max', data.data.balance).attr('placeholder', 'max: ' + data.data.balance.toFixed(2));
+                                    $('#withdrawalAmount').data('max', data.data.balance).attr('placeholder', 'max: ' + data.data.balance.toFixed(2));
+                                    new PNotify({
+                                        text: 'Заявка на вывод средств успешно создана',
+                                        type: 'success'
+                                    });
+                                }
+                                else
+                                {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: data.error + ': ' + data.message,
+                                        type: 'error'
+                                    });
+                                }
+                            } else {
+                                // Handle error
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                            }
+                        },
+                        error: function(){
+                            new PNotify({
+                                title: 'Error!',
+                                text: 'Something went wrong!',
+                                type: 'error'
+                            });
+                        },
+                        complete: function(){
+                            // Finally callback
+                            $('#withdrawalAmount').val('').removeClass('error');
+                            $('#ConfirmWithdrawal').removeAttr('disabled');
+                            $.magnificPopup.close();
+                        }
+                    });
+                });
+                $(document).on('change blur keyup', '#withdrawalAmount', function(){
+                    var $this = $(this);
+                    var amount = parseFloat($this.val());
+                    if(!isNaN(amount) && amount) {
+                        if(amount > $this.data('max'))
+                        {
+                            $this.addClass('error');
+                            $('#ConfirmWithdrawal').attr('disabled', 'disabled');
+                        }
+                        else
+                        {
+                            $this.removeClass('error');
+                            $('#ConfirmWithdrawal').removeAttr('disabled');
+                        }
+                    }
+                    else
+                    {
+                        $this.addClass('error');
+                    }
+                });
+                $(document).on('click', '#DismissWithdrawal', function(){
+                    $('#withdrawalAmount').val('').removeClass('error');
+                    $('#ConfirmWithdrawal').removeAttr('disabled');
+                });
+                //endregion
+            });
+
+        }).apply(this, [jQuery]);
+    </script>
 {% endblock %}

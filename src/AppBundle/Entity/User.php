@@ -72,14 +72,14 @@ class User extends BaseUser
     private $phone;
 
 	/**
-	 * @var string
+	 * @var float
 	 *
 	 * @ORM\Column(name="bonus_balance", type="decimal", precision=10, scale=2, nullable=true, options={"default" : 0, "comment":"Bonus balance"})
 	 */
 	private $bonuses;
 
 	/**
-	 * @var string
+	 * @var float
 	 *
 	 * @ORM\Column(name="cash_balance", type="decimal", precision=10, scale=2, nullable=true, options={"default" : 0, "comment":"Cash balance"})
 	 */
@@ -194,7 +194,7 @@ class User extends BaseUser
 	}
 
 	/**
-	 * @return string
+	 * @return float
 	 */
 	public function getBonuses()
 	{
@@ -202,7 +202,7 @@ class User extends BaseUser
 	}
 
 	/**
-	 * @param string $bonuses
+	 * @param float $bonuses
 	 */
 	public function setBonuses($bonuses)
 	{
@@ -210,7 +210,15 @@ class User extends BaseUser
 	}
 
 	/**
-	 * @return string
+	 * @param float $amount
+	 */
+	public function updateBonusBalance($amount)
+	{
+		$this->bonuses += $amount;
+	}
+
+	/**
+	 * @return float
 	 */
 	public function getBalance()
 	{
@@ -218,13 +226,20 @@ class User extends BaseUser
 	}
 
 	/**
-	 * @param string $balance
+	 * @param float $balance
 	 */
 	public function setBalance($balance)
 	{
 		$this->balance = $balance;
 	}
 
+	/**
+	 * @param float $amount
+	 */
+	public function updateBalance($amount)
+	{
+		$this->balance += $amount;
+	}
 
 	/**
 	 * @return bool|mixed

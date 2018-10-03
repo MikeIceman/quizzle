@@ -1,72 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <style>
-        /* Sets the background image for the wheel */
-        td.the_wheel
-        {
-            background-image: url(/images/wheel_back.png);
-            background-position: 0px -3px;
-            background-repeat: no-repeat;
-        }
-
-        /* Do some css reset on selected elements */
-        h1, p
-        {
-            margin: 0;
-        }
-
-        div.power_controls
-        {
-            margin-right:70px;
-        }
-
-        div.html5_logo
-        {
-            margin-left:70px;
-        }
-
-        /* Styles for the power selection controls */
-        table.power
-        {
-            background-color: #cccccc;
-            cursor: pointer;
-            border:1px solid #333333;
-        }
-
-        table.power th
-        {
-            background-color: white;
-            cursor: default;
-        }
-
-        td.pw1
-        {
-            background-color: #6fe8f0;
-        }
-
-        td.pw2
-        {
-            background-color: #86ef6f;
-        }
-
-        td.pw3
-        {
-            background-color: #ef6f6f;
-        }
-
-        /* Style applied to the spin button once a power has been selected */
-        .clickable
-        {
-            cursor: pointer;
-        }
-
-        /* Other misc styles */
-        .margin_bottom
-        {
-            margin-bottom: 5px;
-        }
-    </style>
 <div class="row">
     <div class="col">
         <section class="card">
@@ -78,13 +12,8 @@
                     <img src="{{ asset('images/wheel.png') }}" style="position:absolute;top:0;left:0;width:100%;height:100%;"/>
                 </div>
                 <div class="row mt-2 text-center">
-                    <a href="#" class="btn btn-default m-auto" title="Вращать колесо!" id="spin-button">Вращать колесо!</a>
+                    <input type="button" href="#" class="btn btn-default m-auto" title="Крутить колесо!" id="spin-button" value="Крутить колесо!" />
                 </div>
-                <div class="row mt-2">
-                    <div class="col text-center" id="countdown"></div>
-                </div>
-                {{ last_spin }}
-                <a class="mb-1 mt-1 mr-1 modal-with-zoom-anim ws-normal btn btn-default" href="#modalAnim">Open with fade-zoom animation</a>
                 <!-- Modal Animation -->
                 <div id="modalAnim" class="zoom-anim-dialog modal-block modal-block-warning mfp-hide">
                     <section class="card">
@@ -133,7 +62,8 @@
 
 {% block javascripts %}
     <script src="/vendor/winwheel-2.7.0/Winwheel.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <!-- Bad practice, I know, to trust external sources ¯\_(ツ)_/¯ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script>
         (function($) {
 
@@ -141,9 +71,18 @@
 
             var theWheel;
             var wheelSpinning = false;
+            var spinId = null;
+
+            Number.prototype.pad = function(size) {
+                var s = String(this);
+                while (s.length < (size || 2)) {s = "0" + s;}
+                return s;
+            }
 
             var countdownInit = function(date) {
-                var countDownDate = (typeof date != 'undefined' && date) ? date : new Date("Mon, 24 Sep 2018 14:42:03 +0200").getTime();
+                var date = (typeof date != 'undefined' && date) ? date : "10/01/2018 20:06:00";
+                var countDownDate = new Date(date).getTime();
+                var $button = $('#spin-button');
                 var x = setInterval(function() {
                     var now = new Date().getTime();
                     var distance = countDownDate - now;
@@ -151,23 +90,28 @@
                     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    document.getElementById("countdown").innerHTML = hours + ":" + minutes + ":" + seconds;
+
                     if (distance < 0) {
                         clearInterval(x);
-                        document.getElementById("countdown").innerHTML = "EXPIRED";
+                        wheelInit();
+                        $button.removeAttr('disabled').val('Крутить колесо!');
+                    }
+                    else
+                    {
+                        $button.attr("disabled", true).val("Следующая попытка через "+hours.pad(2) + ":" + minutes.pad(2) + ":" + seconds.pad(2))
                     }
                 }, 1000);
             };
 
             var wheelInit = function(segments){
+                $('#LoadingOverlay').trigger('loading-overlay:show');
                 $.ajax({
-                    type: 'GET',
-                    //timeout: 1000,
+                    type: 'POST',
                     url: '{{ path('ajax_winwheel_get_segments') }}',
                     dataType: 'json',
                     contentType: 'application/json; charset=UTF-8',
                     success: function(data){
-                        $('#LoadingOverlay').trigger('loading-overlay:hide');
+                        //console.log(data);
                         theWheel = new Winwheel({
                             'numSegments'  : 12,     // Specify number of segments.
                             'outerRadius'  : 160,   // Set outer radius so wheel fits inside the background.
@@ -184,13 +128,24 @@
                                     'callbackFinished' : alertPrize
                                 }
                         });
+                        wheelSpinning = false;
+                        $('#LoadingOverlay').trigger('loading-overlay:hide');
+                    },
+                    error: function(){
+                        new PNotify({
+                            title: 'Error!',
+                            text: 'Something went wrong!',
+                            type: 'error'
+                        });
+                        setTimeout(function(){ location.reload(true); }, 2000);
+                    },
+                    complete: function(){
+                        // Finally callback
                     }
                 });
             };
 
             var alertPrize = function(indicatedSegment) {
-                // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
-                //alert("You have won " + indicatedSegment.id);
 
                 var contents = '',
                     string = '';
@@ -211,7 +166,7 @@
                 }
                 else if(indicatedSegment.cost > 0)
                 {
-                    string = '<h4 class="mt-0">Вы выиграли <b>СУПЕРПРИЗ - '+indicatedSegment.text+'!</b>!</h4>';
+                    string = '<h4 class="mt-0">Вы выиграли <b>СУПЕРПРИЗ - '+indicatedSegment.text+'!</b></h4>';
                     contents = '<div class="row">\n' +
                                 '<div class="col-md-4"><img src="'+indicatedSegment.image+'" class="img-fluid mt-5" alt="'+indicatedSegment.text+'"/></div>\n' +
                                 '<div class="col-md-8">'+string+indicatedSegment.description+'</div></div>';
@@ -237,37 +192,75 @@
                     mainClass: 'my-mfp-zoom-in',
                     modal: true
                 });
-
-
-                resetWheel();
             }
 
             var resetWheel  = function(){
-                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
-                theWheel.draw();                // Call draw to render changes to the wheel.
-                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function
+                theWheel.rotationAngle = 0;     // Reset the wheel angle to 0 degrees
+                theWheel.draw();                // Call draw to render changes to the wheel
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again
             }
 
             $(function() {
+                // On document loaded
 
-                countdownInit();
+                countdownInit('{{ next_spin }}');
                 wheelInit();
 
                 $('#spin-button').on('click', function(e){
                     e.preventDefault();
+                    var $this = $(this);
                     if (wheelSpinning == false)
                     {
-                        // TODO: Get segment from server
-                        var segmentNumber = 9;
-                        if (segmentNumber)
-                        {
-                            var stopAt = theWheel.getRandomForSegment(segmentNumber);
-                            theWheel.animation.stopAngle = stopAt;
-                            theWheel.startAnimation();
-                        }
-                        theWheel.startAnimation();
-                        wheelSpinning = true;
+                        $this.val('Раскручиваем маховики...');
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ path('ajax_winwheel_get_lucky_segment') }}',
+                            //dataType: 'json',
+                            contentType: 'application/json; charset=UTF-8',
+                            success: function(data){
+                                console.log(data);
+                                if(typeof data != 'undefined' && data && data != 'ERROR')
+                                {
+                                    var segmentNumber = parseInt(data.segment);
+                                    if(!isNaN(segmentNumber) && segmentNumber){
+                                        var stopAt = theWheel.getRandomForSegment(segmentNumber);
+                                        theWheel.animation.stopAngle = stopAt;
+                                        theWheel.startAnimation();
+                                        wheelSpinning = true;
+                                        countdownInit(data.nextSpin);
+                                        spinId = data.spinId;
+                                    } else {
+                                        // Handle error
+                                        new PNotify({
+                                            title: 'Error!',
+                                            text: 'Something went wrong!',
+                                            type: 'error'
+                                        });
+                                        setTimeout(function(){ location.reload(true); }, 2000);
+                                    }
+                                } else {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: 'Already spinned!',
+                                        type: 'error'
+                                    });
+                                    setTimeout(function(){ location.reload(true); }, 2000);
+                                }
+                            },
+                            error: function(){
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                                setTimeout(function(){ location.reload(true); }, 2000);
+                            },
+                            complete: function(){
+                                // Finally callback
+                            }
+                        });
                     }
                 });
 
@@ -292,11 +285,56 @@
                 });
 
                 /*
-                Modal Dismiss
+                Modal Reject
                 */
                 $(document).on('click', '.modal-dismiss', function (e) {
                     e.preventDefault();
-                    $.magnificPopup.close();
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ path('ajax_winwheel_reject_winnings') }}',
+                        data: {spinId: spinId},
+                        success: function(data){
+                            console.log(data);
+                            if(typeof data != 'undefined' && data)
+                            {
+                                if(data.success)
+                                {
+                                    // TODO: Any DOM manipulation e.g. add row in a list of winningst in widget
+                                    new PNotify({
+                                        text: 'Вы отказались от приза в розыгрыше #' + spinId,
+                                        type: 'success'
+                                    });
+                                }
+                                else
+                                {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: data.error + ': ' + data.message,
+                                        type: 'error'
+                                    });
+                                }
+                            } else {
+                                // Handle error
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                            }
+                        },
+                        error: function(){
+                            new PNotify({
+                                title: 'Error!',
+                                text: 'Something went wrong!',
+                                type: 'error'
+                            });
+                        },
+                        complete: function(){
+                            // Finally callback
+                            $.magnificPopup.close();
+                        }
+                    });
                 });
 
                 /*
@@ -304,15 +342,54 @@
                 */
                 $(document).on('click', '.modal-confirm', function (e) {
                     e.preventDefault();
-                    $.magnificPopup.close();
 
-                    new PNotify({
-                        title: 'Success!',
-                        text: 'Modal Confirm Message.',
-                        type: 'success'
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ path('ajax_winwheel_accept_winnings') }}',
+                        data: {spinId: spinId},
+                        success: function(data){
+                            console.log(data);
+                            if(typeof data !== 'undefined' && data)
+                            {
+                                if(data.success)
+                                {
+                                    // TODO: Any DOM manipulation e.g. add row in a list of winningst in widget
+                                    new PNotify({
+                                        text: 'Вы успешно забрали свой приз в розыгрыше #' + spinId,
+                                        type: 'success'
+                                    });
+                                }
+                                else
+                                {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: data.error + ': ' + data.message,
+                                        type: 'error'
+                                    });
+                                }
+                            } else {
+                                // Handle error
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                            }
+                        },
+                        error: function(){
+                            new PNotify({
+                                title: 'Error!',
+                                text: 'Something went wrong!',
+                                type: 'error'
+                            });
+                        },
+                        complete: function(){
+                            // Finally callback
+                            $.magnificPopup.close();
+                        }
                     });
                 });
-
             });
 
         }).apply(this, [jQuery]);
