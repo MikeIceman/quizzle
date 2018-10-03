@@ -2,12 +2,94 @@
 
 {% block body %}
     <div class="row">
-        <div class="col">
+        <div class="col-lg-8 col-xl-6 mb-4">
             <section class="card">
                 <div class="card-body">
-                    <p>
-                        To be deployed...
-                    </p>
+                    <div class="thumb-info mb-3">
+                        <img src="https://www.gravatar.com/avatar/{{ user.email | md5 }}?d=identicon&s=585" class="rounded img-fluid" alt="{{ user.firstname }} {{ user.lastname }}">
+                        <div class="thumb-info-title">
+                            <span class="thumb-info-inner">{{ user.firstname }} {{ user.lastname }}</span>
+                            <span class="thumb-info-type">{{ role }}</span>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-2 mt-3">О себе</h5>
+                    <p class="text-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis vulputate quam. Interdum et malesuada</p>
+
+                    <hr class="dotted short">
+
+                    <div class="social-icons-list">
+                        <a rel="tooltip" data-placement="bottom" target="_blank" href="http://www.facebook.com" data-original-title="Facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                        <a rel="tooltip" data-placement="bottom" href="http://www.twitter.com" data-original-title="Twitter"><i class="fab fa-twitter"></i><span>Twitter</span></a>
+                        <a rel="tooltip" data-placement="bottom" href="http://www.linkedin.com" data-original-title="Linkedin"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-4 col-xl-6 mb-4">
+            <h4 class="mb-3 mt-0">Статистика</h4>
+            <ul class="simple-card-list mb-3">
+                <li class="primary">
+                    <h3>31</h3>
+                    <p class="text-light">Участий в розыгрышах</p>
+                </li>
+                <li class="primary">
+                    <h3>9</h3>
+                    <p class="text-light">Призов выиграно</p>
+                </li>
+                <li class="primary">
+                    <h3>{{ user.balance|money(2) }}</h3>
+                    <p class="text-light">Доступно для вывода</p>
+                </li>
+                <li class="primary">
+                    <h3>{{ user.bonuses|number(2) }}</h3>
+                    <p class="text-light">Баллов накоплено</p>
+                </li>
+                <li class="primary">
+                    <h3>{{ user.balance|money(2) }}</h3>
+                    <p class="text-light">Выведено из системы</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-12">
+            <section class="card">
+                <div class="card-body">
+                    <h4 class="mb-3">Активность</h4>
+
+                    <div class="timeline timeline-simple mt-3 mb-3">
+                        <div class="tm-body">
+                            <div class="tm-title">
+                                <h5 class="m-0 pt-2 pb-2 text-uppercase">Сентябрь 2018</h5>
+                            </div>
+                            <ol class="tm-items">
+                                <li>
+                                    <div class="tm-box">
+                                        <p class="text-muted mb-0">14 часов назад</p>
+                                        <p>
+                                            Пользователь выиграл денежный приз в викторине <span class="text-primary">#43561</span>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tm-box">
+                                        <p class="text-muted mb-0">2 дня назад</p>
+                                        <p>
+                                            Участие в первой викторине. Начислено 500 бонусных баллов
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="tm-box">
+                                        <p class="text-muted mb-0">3 дня назад</p>
+                                        <p>
+                                            Пользователь зарегистрировался
+                                        </p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
