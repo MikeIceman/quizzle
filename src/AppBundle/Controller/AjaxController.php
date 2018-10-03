@@ -402,4 +402,51 @@
 
 			return new JsonResponse(['success' => false, 'error' => 500, 'message' => 'Internal error occured']);
 		}
+
+		/**
+		 * @Route("/balance/withdrawal/", name="ajax_balance_withdrawal", methods={"GET", "POST"})
+		 */
+		public function balanceWithdrawal(Request $request)
+		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$amount = $request->get('amount');
+
+			if($amount)
+			{
+				$balance = $user->getBalance();
+
+				if($amount > $balance)
+				{
+					return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Not enough money']);
+				}
+
+				$em = $this->getDoctrine()->getManager();
+
+				$user->updateBalance(-1*$amount);
+
+				$operation = new Operation();
+				$operation->setUser($user);
+				$operation->setType('withdrawal');
+				$operation->setAmount($amount);
+				$operation->setStatus('pending');
+
+				$em->persist($user);
+				$em->persist($operation);
+
+				$em->flush();
+
+				return new JsonResponse([
+					'success' => true,
+					'error' => 0,
+					'message' => 'Balance updated',
+					'data' => [
+						'balance' => $user->getBalance(),
+						'bonus_balance' => $user->getBonuses()
+					]
+				]);
+			}
+
+			return new JsonResponse(['success' => false, 'error' => 500, 'message' => 'Internal error occured']);
+		}
 	}
