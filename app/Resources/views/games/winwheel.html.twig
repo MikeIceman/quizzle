@@ -1,32 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <style>
-        /* Sets the background image for the wheel */
-        td.the_wheel
-        {
-            background-image: url(/images/wheel_back.png);
-            background-position: 0px -3px;
-            background-repeat: no-repeat;
-        }
-
-        /* Do some css reset on selected elements */
-        h1, p
-        {
-            margin: 0;
-        }
-
-        div.power_controls
-        {
-            margin-right:70px;
-        }
-
-        div.html5_logo
-        {
-            margin-left:70px;
-        }
-
-    </style>
 <div class="row">
     <div class="col">
         <section class="card">
@@ -88,6 +62,7 @@
 
 {% block javascripts %}
     <script src="/vendor/winwheel-2.7.0/Winwheel.min.js"></script>
+    <!-- Bad practice, I know, to trust external sources ¯\_(ツ)_/¯ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script>
         (function($) {
@@ -375,7 +350,7 @@
                         data: {spinId: spinId},
                         success: function(data){
                             console.log(data);
-                            if(typeof data != 'undefined' && data)
+                            if(typeof data !== 'undefined' && data)
                             {
                                 if(data.success)
                                 {

@@ -247,16 +247,6 @@
 
             'use strict';
 
-            var theWheel;
-            var wheelSpinning = false;
-            var spinId = null;
-
-            Number.prototype.pad = function(size) {
-                var s = String(this);
-                while (s.length < (size || 2)) {s = "0" + s;}
-                return s;
-            }
-
             $(function() {
                 // On document loaded
 
@@ -329,7 +319,7 @@
                         url: '{{ path('ajax_balance_convert') }}',
                         data: {amount: $('#convertAmount').val()},
                         success: function(data){
-                            if(typeof data != 'undefined' && data)
+                            if(typeof data !== 'undefined' && data)
                             {
                                 if(data.success)
                                 {
