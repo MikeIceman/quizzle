@@ -49,23 +49,25 @@
                         </ul>
                     </li>
                     {% if is_granted('ROLE_ADMIN') != false %}
-                        <li class="{{ curroute == 'dashboard' ? 'nav-active' }}">
+                        <li class="nav-parent {{ curroute == 'dashboard' or curroute starts with 'user_' or curroute starts with 'prize_' ? 'nav-expanded nav-active' }}">
                             <a class="nav-link" href="{{ path('dashboard') }}">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                 <span>Админпанель</span>
                             </a>
-                        </li>
-                        <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
-                            <a class="nav-link" href="{{ path('user_index') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>Пользователи</span>
-                            </a>
-                        </li>
-                        <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
-                            <a class="nav-link" href="{{ path('prize_index') }}">
-                                <i class="fa fa-gift" aria-hidden="true"></i>
-                                <span>Список призов</span>
-                            </a>
+                            <ul class="nav nav-children">
+                                <li class="{{ curroute starts with 'user_' ? 'nav-active' }}">
+                                    <a class="nav-link" href="{{ path('user_index') }}">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Пользователи</span>
+                                    </a>
+                                </li>
+                                <li class="{{ curroute starts with 'prize_' ? 'nav-active' }}">
+                                    <a class="nav-link" href="{{ path('prize_index') }}">
+                                        <i class="fa fa-gift" aria-hidden="true"></i>
+                                        <span>Список призов</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     {% endif %}
                 </ul>
