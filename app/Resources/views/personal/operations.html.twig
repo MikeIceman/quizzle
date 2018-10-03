@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        To be deployed
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <header class="page-header">
+        <h2>Вывод средств</h2>
+
+        <div class="right-wrapper text-right pr-5">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="{{ path('homepage') }}" title="Главная страница">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li><a href="{{ path('personal_index') }}">Личный кабинет</a></li>
+            </ol>
+        </div>
+    </header>
+{% endblock %}
+
+{% block title %}Вывод средств{% endblock %}

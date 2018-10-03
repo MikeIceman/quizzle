@@ -2,7 +2,55 @@
 
 {% block body %}
     <div class="row">
-        To be deployed
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Мои призы</h2>
+                </header>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped datatable" id="datatable-default">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Добавлено</th>
+                            <th>Обновлено</th>
+                            <th>Выигрыш</th>
+                            <th>Изображение</th>
+                            <th>Описание</th>
+                            <th>Статус</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for prize in prizes %}
+
+                            <tr>
+                                <td class="text-right">{{ prize.id }}</td>
+                                <td data-sort="{{ prize.dateAdded|date("U") }}">{{ prize.dateAdded|date("d.m.Y H:i:s") }}</td>
+                                <td data-sort="{{ prize.dateUpdated|date("U") }}">{{ prize.dateUpdated|date("d.m.Y H:i:s") }}</td>
+                                <td><b>{{ prize.prize.title }}</b></td>
+                                <td class="text-center">
+                                    <img class="img-fluid" src="{{ prize.prize.image }}" title="{{ prize.prize.title }}" />
+                                </td>
+                                <td><span class="text-nowrap text-truncate" style="display:inline-block;max-width:200px;cursor: help" data-toggle="popover" data-container="body" data-placement="top" title="" data-original-title="{{ prize.prize.title }}" data-content="{{ prize.prize.description }}">{{ prize.prize.description }}</span></td>
+                                <td class="text-center" style="white-space: nowrap" data-sort="{{ prize.status }}">
+                                    {% if prize.status == 'pending' %}
+                                        <i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting shipment"></i>
+                                    {% elseif prize.status == 'sent' %}
+                                        <i class="fas fa-truck text-primary" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting delivery"></i>
+                                    {% elseif prize.status == 'received' %}
+                                        <i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Delivered"></i>
+                                    {% elseif prize.status == 'rejected' %}
+                                        <i class="fas fa-times text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Rejected"></i>
+                                    {% else %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
     </div>
 {% endblock %}
 
