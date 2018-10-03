@@ -51,7 +51,7 @@ class DefaultController extends Controller
 		$items = $this->getDoctrine()->getRepository(Entity\Menu::class)->findAll();
 		$menu = [];
 
-		// TODO: Add recursion and permissions check
+		// TODO: Need to add recursion and permissions check to use dynamic menu constructor
 		foreach($items as $item)
 		{
 			if($item->getParent() == null)
