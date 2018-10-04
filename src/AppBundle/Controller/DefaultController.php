@@ -27,20 +27,23 @@ class DefaultController extends Controller
 	    $user = $this->get('security.token_storage')->getToken()->getUser();
 
 
-	    $repository = $this->getDoctrine()->getRepository(WinWheelSpin::class);
-	    $spins = $repository->createQueryBuilder('s')
+	    $spins = $this->getDoctrine()
+		    ->getRepository(WinWheelSpin::class)
+		    ->createQueryBuilder('s')
 		    ->select('count(s.id)')
 		    ->getQuery()
 		    ->getSingleScalarResult();
 
-	    $repository = $this->getDoctrine()->getRepository(UserPrize::class);
-	    $winners = $repository->createQueryBuilder('p')
+	    $winners = $this->getDoctrine()
+		    ->getRepository(UserPrize::class)
+		    ->createQueryBuilder('p')
 		    ->select('count(p.id)')
 		    ->getQuery()
 		    ->getSingleScalarResult();
 
-	    $repository = $this->getDoctrine()->getRepository(Operation::class);
-	    $payouts = $repository->createQueryBuilder('o')
+	    $payouts = $this->getDoctrine()
+		    ->getRepository(Operation::class)
+		    ->createQueryBuilder('o')
 		    ->select('sum(o.amount)')
 		    ->where('o.type = :type')
 		    ->andWhere('o.status = :status')

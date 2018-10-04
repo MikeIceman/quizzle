@@ -36,15 +36,25 @@
                                 {% endif %}
                             </td>
                             <td class="text-right" data-sort="{{ winning.prizeAmount|number(0) }}">
-                                {% if winning.prizeType == 'bonus' %}
-                                    {{ winning.prizeAmount|number(0) }}
-                                {% elseif winning.prizeType == 'cash' %}
-                                    {{ winning.prizeAmount|money(2) }}
-                                {% elseif winning.prizeType == 'prize' %}
-                                    1 X <img class="img-fluid" src="{{ winning.prize.image }}" style="max-height:30px;margin:-15px 0;cursor: help" data-toggle="popover" data-container="body" data-placement="top" title="" data-original-title="{{ winning.prize.title }}" data-content="{{ winning.prize.description }}" />
-                                {% else %}
-                                    {{ winning.prizeAmount }}
-                                {% endif %}
+                                <span class="
+                                    {% if winning.status == 'pending' %}
+                                        text-warning
+                                    {% elseif winning.status == 'rejected' %}
+                                        text-danger
+                                    {% else %}
+                                        text-success
+                                    {% endif %}
+                                ">
+                                    {% if winning.prizeType == 'bonus' %}
+                                        <i class="far fa-star"></i> {{ winning.prizeAmount|number(0) }}
+                                    {% elseif winning.prizeType == 'cash' %}
+                                        {{ winning.prizeAmount|money(2) }}
+                                    {% elseif winning.prizeType == 'prize' %}
+                                        1 X <img class="img-fluid" src="{{ winning.prize.image }}" style="max-height:30px;margin:-15px 0;cursor: help" data-toggle="popover" data-container="body" data-placement="top" title="" data-original-title="{{ winning.prize.title }}" data-content="{{ winning.prize.description }}" />
+                                    {% else %}
+                                        <span class="text-success">{{ winning.prizeAmount }}</span>
+                                    {% endif %}
+                                </span>
                             </td>
                             <td class="text-center" style="white-space: nowrap" data-sort="{{ winning.status }}">
                                 {% if winning.status == 'pending' %}

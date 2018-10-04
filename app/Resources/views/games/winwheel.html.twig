@@ -50,7 +50,8 @@
                 </div>
             </header>
             <div class="card-body">
-                <h3 class="mt-0 font-weight-semibold mt-0 text-center">{{ prize.title }}</h3>
+                <h3 class="mt-0 font-weight-semibold text-center">{{ prize.title }}</h3>
+                <h4 class="mt-0 font-weight-semibold text-center">Осталось: {{ prize.quantity|number(0) }}</h4>
                 <p>{{ prize.description }}</p>
             </div>
         </section>
