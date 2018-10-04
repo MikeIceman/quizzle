@@ -26,7 +26,17 @@
                                     Вывод средств
                                 </td>
                                 <td class="text-right">
-                                    <span class="text-danger">- {{ withdrawal.amount|money(2) }}</span>
+                                    <span class="
+                                        {% if withdrawal.status == 'pending' %}
+                                            text-warning
+                                        {% elseif withdrawal.status == 'reversed' %}
+                                            text-danger
+                                        {% else %}
+                                            text-success
+                                        {% endif %}
+                                    ">
+                                    - {{ withdrawal.amount|money(2) }}
+                                    </span>
                                 </td>
                                 </td>
                                 <td class="text-center" data-sort="{{ withdrawal.status }}">

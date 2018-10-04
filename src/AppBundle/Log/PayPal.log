@@ -1,0 +1,682 @@
+[04-10-2018 04:43:52] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:43:53] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:43:53] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:43:53] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:43:53] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:52 GMT, Server: Apache, paypal-debug-id: a4bb1f4dcfa2c, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: a4bb1f4dcfa2c, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:43:53] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29924}
+
+================================================================================================================================
+
+[04-10-2018 04:43:53] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:43:55] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:43:55] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb57e683447c","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb57e6834c4c","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:43:55] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:43:55] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:53 GMT, Server: Apache, paypal-debug-id: 1e5650d5ee99b, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1e5650d5ee99b, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:43:55] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"FT8KA8T3S3LCQ","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb57e683447c","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/FT8KA8T3S3LCQ","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:43:55] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:43:56] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:43:56] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:43:56] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:43:56] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:55 GMT, Server: Apache, paypal-debug-id: a51a092f88f64, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: a51a092f88f64, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:43:56] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29921}
+
+================================================================================================================================
+
+[04-10-2018 04:43:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:43:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:43:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb57e6b16891","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb57e6b16c79","amount":{"value":"26.20","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:43:57] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:43:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:56 GMT, Server: Apache, paypal-debug-id: 967ff08076627, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 967ff08076627, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:43:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"C53H6DEQ45UMG","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb57e6b16891","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/C53H6DEQ45UMG","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:43:57] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:43:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:43:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:43:58] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:43:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:57 GMT, Server: Apache, paypal-debug-id: 80d2e0e8abb3a, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 80d2e0e8abb3a, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:43:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29919}
+
+================================================================================================================================
+
+[04-10-2018 04:43:58] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:43:59] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:43:59] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb57e6d78782","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb57e6d78b6a","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:43:59] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:43:59] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:58 GMT, Server: Apache, paypal-debug-id: b3c9818d9e128, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: b3c9818d9e128, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:43:59] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"5QNBB2MTJTCU4","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb57e6d78782","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/5QNBB2MTJTCU4","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:43:59] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:44:00] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:44:00] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:44:00] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:44:00] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:43:59 GMT, Server: Apache, paypal-debug-id: 209a917be9fc3, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 209a917be9fc3, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:44:00] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29917}
+
+================================================================================================================================
+
+[04-10-2018 04:44:00] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:44:01] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:44:01] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb57e6faa8c8","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb57e6faacb0","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:44:01] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:44:01] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:44:00 GMT, Server: Apache, paypal-debug-id: 8754f4dde2cb4, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 8754f4dde2cb4, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:44:01] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"4DUR4SM8WJ65N","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb57e6faa8c8","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/4DUR4SM8WJ65N","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:44:01] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:44:02] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:44:02] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:44:02] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:44:02] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:44:02 GMT, Server: Apache, paypal-debug-id: 80d389362f76e, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 80d389362f76e, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:44:02] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29914}
+
+================================================================================================================================
+
+[04-10-2018 04:44:02] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:44:04] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:44:04] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb57e71e6a39","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb57e71e6e21","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:44:04] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:44:04] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:44:03 GMT, Server: Apache, paypal-debug-id: 6ac8d8da23f3f, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 6ac8d8da23f3f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:44:04] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"3MR2RWFHHEAJA","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb57e71e6a39","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/3MR2RWFHHEAJA","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:52:59] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:53:01] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:53:01] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:53:01] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:53:01] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:53:00 GMT, Server: Apache, paypal-debug-id: 46423426e5dc9, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 46423426e5dc9, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:53:01] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29376}
+
+================================================================================================================================
+
+[04-10-2018 04:53:01] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:53:02] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:53:02] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5808b51e9a","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5808b52282","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:53:02] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:53:02] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:53:01 GMT, Server: Apache, paypal-debug-id: a9fedb51d98e0, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: a9fedb51d98e0, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:53:02] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"7L3QXAC76HKQU","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5808b51e9a","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/7L3QXAC76HKQU","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:53:20] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:53:21] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:53:21] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:53:21] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:53:21] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:53:20 GMT, Server: Apache, paypal-debug-id: 76a2ee8453813, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 76a2ee8453813, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:53:21] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29356}
+
+================================================================================================================================
+
+[04-10-2018 04:53:21] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:53:22] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:53:22] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb580a00c9f3","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb580a00cddb","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:53:22] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:53:22] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:53:21 GMT, Server: Apache, paypal-debug-id: 7ee12a764cf9f, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 7ee12a764cf9f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:53:22] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"LWQCWENUCHKUS","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb580a00c9f3","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/LWQCWENUCHKUS","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:54:06] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:54:08] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:54:08] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:08] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:54:08] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:07 GMT, Server: Apache, paypal-debug-id: 77721707624f5, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 77721707624f5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:08] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29309}
+
+================================================================================================================================
+
+[04-10-2018 04:54:08] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:54:09] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:54:09] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb580cee1adc","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb580cee22ac","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:09] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:54:09] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:08 GMT, Server: Apache, paypal-debug-id: b35b98d8895b4, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: b35b98d8895b4, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:09] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"76Y9NNMX8Y35L","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb580cee1adc","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/76Y9NNMX8Y35L","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:54:09] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:54:10] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:54:10] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:10] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:54:10] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:10 GMT, Server: Apache, paypal-debug-id: ee84c4bf2017, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ee84c4bf2017, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:10] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29306}
+
+================================================================================================================================
+
+[04-10-2018 04:54:10] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:54:11] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:54:11] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb580d18d3e4","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb580d18d7cc","amount":{"value":"26.20","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:11] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:54:11] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:10 GMT, Server: Apache, paypal-debug-id: 1c62907e3aca, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1c62907e3aca, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:11] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"KYKCYG3U5FRJ6","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb580d18d3e4","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/KYKCYG3U5FRJ6","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:54:11] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:54:12] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:54:12] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:12] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:54:12] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:12 GMT, Server: Apache, paypal-debug-id: 2b4bf9f929782, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 2b4bf9f929782, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:12] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29304}
+
+================================================================================================================================
+
+[04-10-2018 04:54:12] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:54:14] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:54:14] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb580d3e430b","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb580d3e46f3","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:14] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:54:14] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:13 GMT, Server: Apache, paypal-debug-id: 2516a9423499, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 2516a9423499, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:14] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"A2PXEHWUVAB9L","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb580d3e430b","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/A2PXEHWUVAB9L","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:54:14] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:54:15] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:54:15] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:15] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:54:15] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:14 GMT, Server: Apache, paypal-debug-id: c317717e641c0, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: c317717e641c0, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:15] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29302}
+
+================================================================================================================================
+
+[04-10-2018 04:54:15] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:54:16] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:54:16] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb580d627032","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb580d62741a","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:16] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:54:16] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:15 GMT, Server: Apache, paypal-debug-id: 6f5a3b6d5674f, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 6f5a3b6d5674f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:16] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"F9CJ8A9NQBA8L","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb580d627032","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/F9CJ8A9NQBA8L","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:54:16] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:54:17] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:54:17] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:17] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:54:17] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:16 GMT, Server: Apache, paypal-debug-id: 322c93f19f755, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 322c93f19f755, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:17] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29300}
+
+================================================================================================================================
+
+[04-10-2018 04:54:17] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:54:18] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:54:18] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb580d85d7c9","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb580d85dbb1","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:54:18] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:54:18] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:54:17 GMT, Server: Apache, paypal-debug-id: 9029ca4e8e4f2, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 9029ca4e8e4f2, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:54:18] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"65VKJXASDUFR6","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb580d85d7c9","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/65VKJXASDUFR6","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:55:18] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:55:19] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:55:19] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:19] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:55:19] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:18 GMT, Server: Apache, paypal-debug-id: 4df7f3b3834e3, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 4df7f3b3834e3, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:19] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29238}
+
+================================================================================================================================
+
+[04-10-2018 04:55:19] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:55:20] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:55:20] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5811647e3e","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5811648226","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:20] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:55:20] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:19 GMT, Server: Apache, paypal-debug-id: 8c8c3e6577999, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 8c8c3e6577999, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:20] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"L2MXGVEGGDEY4","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5811647e3e","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/L2MXGVEGGDEY4","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:55:20] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:55:21] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:55:21] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:21] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:55:21] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:20 GMT, Server: Apache, paypal-debug-id: 7252144fbb4bc, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 7252144fbb4bc, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:21] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29236}
+
+================================================================================================================================
+
+[04-10-2018 04:55:21] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:55:22] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:55:22] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb581187bec5","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb581187c2ad","amount":{"value":"26.20","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:22] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:55:22] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:21 GMT, Server: Apache, paypal-debug-id: 43123147a939a, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 43123147a939a, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:22] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"2HKPQEMYL2GHS","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb581187bec5","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/2HKPQEMYL2GHS","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:55:22] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:55:23] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:55:23] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:23] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:55:23] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:22 GMT, Server: Apache, paypal-debug-id: aa055597ecbc8, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: aa055597ecbc8, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:23] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29233}
+
+================================================================================================================================
+
+[04-10-2018 04:55:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5811aac4b3","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5811aac89b","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:23 GMT, Server: Apache, paypal-debug-id: 3e0daf2ae90f5, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 3e0daf2ae90f5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"YAT27CWLCZQHJ","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5811aac4b3","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/YAT27CWLCZQHJ","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:25 GMT, Server: Apache, paypal-debug-id: 57cd15c244e70, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 57cd15c244e70, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29231}
+
+================================================================================================================================
+
+[04-10-2018 04:55:25] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:55:27] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:55:27] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5811d0c2b9","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5811d0c6a1","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:27] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:55:27] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:26 GMT, Server: Apache, paypal-debug-id: 2e7b9e7534eb7, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 2e7b9e7534eb7, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:27] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"Y2PB778GW55PG","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5811d0c2b9","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/Y2PB778GW55PG","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:55:27] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:55:28] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:55:28] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:28] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:55:28] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:27 GMT, Server: Apache, paypal-debug-id: be1d2bef6f4dc, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: be1d2bef6f4dc, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:28] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29229}
+
+================================================================================================================================
+
+[04-10-2018 04:55:28] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:55:29] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:55:29] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5811f32c64","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5811f3304c","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:55:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:55:29] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:55:28 GMT, Server: Apache, paypal-debug-id: e0b7ebe365b77, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: e0b7ebe365b77, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:55:29] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"NYWN9EV64SVGQ","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5811f32c64","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/NYWN9EV64SVGQ","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:57:33] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:57:37] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:57:37] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:37] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:57:37] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:36 GMT, Server: Apache, paypal-debug-id: 610ae91c71ce, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 610ae91c71ce, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:37] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29100}
+
+================================================================================================================================
+
+[04-10-2018 04:57:37] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:57:38] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:57:38] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5819d20837","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5819d20c1f","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:38] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:57:38] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:37 GMT, Server: Apache, paypal-debug-id: ced36670b6a8d, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ced36670b6a8d, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:38] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"Y8XHRAJCUEGEE","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5819d20837","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/Y8XHRAJCUEGEE","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:57:38] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:57:39] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:57:39] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:39] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:57:39] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:39 GMT, Server: Apache, paypal-debug-id: 120b57019626, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 120b57019626, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:39] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29097}
+
+================================================================================================================================
+
+[04-10-2018 04:57:39] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:57:41] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 313, , 
+[04-10-2018 04:57:41] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb581a2c0042","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb581a2c042a","amount":{"value":"26.20","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:41] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:57:41] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:40 GMT, Server: Apache, paypal-debug-id: 74705ae35a6d, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 74705ae35a6d, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:41] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"MQPH7SS2HJHUE","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb581a2c0042","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/MQPH7SS2HJHUE","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:57:41] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:57:42] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:57:42] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:42] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:57:42] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:41 GMT, Server: Apache, paypal-debug-id: e6a3570c80cc9, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: e6a3570c80cc9, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:42] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29095}
+
+================================================================================================================================
+
+[04-10-2018 04:57:42] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:57:43] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:57:43] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb581a50b23b","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb581a50b623","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:43] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:57:43] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:42 GMT, Server: Apache, paypal-debug-id: c875d69f6fbdd, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: c875d69f6fbdd, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:43] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"R96RJF7NBRTUY","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb581a50b23b","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/R96RJF7NBRTUY","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:57:43] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:57:44] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:57:44] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:44] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:57:44] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:43 GMT, Server: Apache, paypal-debug-id: bae53513eb157, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: bae53513eb157, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:44] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29092}
+
+================================================================================================================================
+
+[04-10-2018 04:57:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:57:46] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:57:46] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb581a77947f","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb581a779867","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:46] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:57:46] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:45 GMT, Server: Apache, paypal-debug-id: f2d2aa0b16660, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: f2d2aa0b16660, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:46] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"FRCVUX3GXPQT4","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb581a77947f","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/FRCVUX3GXPQT4","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 04:57:46] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 04:57:47] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 04:57:47] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:47] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 04:57:47] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:46 GMT, Server: Apache, paypal-debug-id: ccf5e4051ada, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ccf5e4051ada, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:47] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T02:02:36ZD_gcqJ6b_89QRI5_c79mqjJJmWf_bsnb2MwgR-oN6EQ","access_token":"A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29090}
+
+================================================================================================================================
+
+[04-10-2018 04:57:47] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 04:57:48] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAHB4UbfuS9r_Vwyv5MQw8c2MmHkxwNqqmNcnFHFGGtmCJlJEAZm0kKubbAbCBICAk2zIpI2lJeiUNwDBvANdjoEZf6MWw, Content-Length: 309, , 
+[04-10-2018 04:57:48] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb581aa1864c","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb581aa18a34","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 04:57:48] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 04:57:48] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 02:57:47 GMT, Server: Apache, paypal-debug-id: 5d808ae845b72, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 5d808ae845b72, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 04:57:48] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"K8SLTX4F8ZCQN","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb581aa1864c","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/K8SLTX4F8ZCQN","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 05:03:22] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 05:03:23] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 05:03:23] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:03:23] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 05:03:23] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:03:22 GMT, Server: Apache, paypal-debug-id: ab181b17e1ca5, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ab181b17e1ca5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:03:23] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T03:03:23Zg4c6vd2PaNWJfCqGOUBM2M6zHWq855RVPwcIMXl5ErA","access_token":"A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400}
+
+================================================================================================================================
+
+[04-10-2018 05:03:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 05:03:25] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw, Content-Length: 313, , 
+[04-10-2018 05:03:25] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb582fa8883a","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb582fa88c22","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:03:25] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 05:03:25] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:03:24 GMT, Server: Apache, paypal-debug-id: 9e6c4b4db47e, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 9e6c4b4db47e, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:03:25] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"95HZKWG2Y9PYW","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb582fa8883a","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/95HZKWG2Y9PYW","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 05:07:18] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 05:07:19] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 05:07:19] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:07:19] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 05:07:19] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:07:19 GMT, Server: Apache, paypal-debug-id: f55c4514dbbe, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: f55c4514dbbe, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:07:19] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T03:03:23Zg4c6vd2PaNWJfCqGOUBM2M6zHWq855RVPwcIMXl5ErA","access_token":"A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32164}
+
+================================================================================================================================
+
+[04-10-2018 05:07:19] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 05:07:21] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw, Content-Length: 313, , 
+[04-10-2018 05:07:21] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb583e68b90d","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb583e68c0dd","amount":{"value":"17.80","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:07:21] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 05:07:21] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:07:20 GMT, Server: Apache, paypal-debug-id: 996964002fcc5, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 996964002fcc5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:07:21] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"9Y79HJUQ5P5AU","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb583e68b90d","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/9Y79HJUQ5P5AU","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 05:08:15] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 05:08:16] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 05:08:16] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:08:16] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 05:08:16] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:08:15 GMT, Server: Apache, paypal-debug-id: 9c8c62187888e, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 9c8c62187888e, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:08:16] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T03:03:23Zg4c6vd2PaNWJfCqGOUBM2M6zHWq855RVPwcIMXl5ErA","access_token":"A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32108}
+
+================================================================================================================================
+
+[04-10-2018 05:08:16] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 05:08:17] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw, Content-Length: 313, , 
+[04-10-2018 05:08:17] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5841f3ef70","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5841f3f358","amount":{"value":"26.20","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:08:17] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 05:08:17] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:08:16 GMT, Server: Apache, paypal-debug-id: e05775ba6593c, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: e05775ba6593c, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:08:17] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"6QJ294J6AXSML","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5841f3ef70","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/6QJ294J6AXSML","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 05:41:51] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 05:41:52] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 05:41:52] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:41:52] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 05:41:52] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:41:52 GMT, Server: Apache, paypal-debug-id: c91d8f6624e9f, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: c91d8f6624e9f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:41:52] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T03:03:23Zg4c6vd2PaNWJfCqGOUBM2M6zHWq855RVPwcIMXl5ErA","access_token":"A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30091}
+
+================================================================================================================================
+
+[04-10-2018 05:41:52] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 05:41:54] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw, Content-Length: 309, , 
+[04-10-2018 05:41:54] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb58bff8d324","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb58bff8d70c","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:41:54] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 05:41:54] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:41:53 GMT, Server: Apache, paypal-debug-id: 3e9f298a491cf, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 3e9f298a491cf, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:41:54] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"X6DWYKJCLNA7G","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb58bff8d324","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/X6DWYKJCLNA7G","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 05:41:54] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 05:41:55] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 05:41:55] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:41:55] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 05:41:55] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:41:54 GMT, Server: Apache, paypal-debug-id: 1ccd0049d9237, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1ccd0049d9237, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:41:55] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T03:03:23Zg4c6vd2PaNWJfCqGOUBM2M6zHWq855RVPwcIMXl5ErA","access_token":"A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30089}
+
+================================================================================================================================
+
+[04-10-2018 05:41:55] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 05:41:56] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw, Content-Length: 309, , 
+[04-10-2018 05:41:56] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb58c0267267","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb58c026764f","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:41:56] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 05:41:56] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:41:55 GMT, Server: Apache, paypal-debug-id: d79e6560cfc9f, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: d79e6560cfc9f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:41:56] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"Y5CCWNLGVPCPN","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb58c0267267","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/Y5CCWNLGVPCPN","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 05:41:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 05:41:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 05:41:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:41:57] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 05:41:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:41:57 GMT, Server: Apache, paypal-debug-id: 874c0e8306c6, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 874c0e8306c6, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:41:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T03:03:23Zg4c6vd2PaNWJfCqGOUBM2M6zHWq855RVPwcIMXl5ErA","access_token":"A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30086}
+
+================================================================================================================================
+
+[04-10-2018 05:41:57] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 05:41:59] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAFHLnk5ozbw3MP5QBqE68-FBxUirpjXTAvY6RoUBZIt0a6GT4DHRcFzH_Y7WAVhLgwGQeP-uNecyDHB2cFJz4RNyh_ysw, Content-Length: 309, , 
+[04-10-2018 05:41:59] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb58c04e1be6","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb58c04e1fce","amount":{"value":"5","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 05:41:59] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 05:41:59] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 03:41:58 GMT, Server: Apache, paypal-debug-id: 21f02f7b23897, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 21f02f7b23897, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 05:41:59] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"JKHD8RKM28E8S","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb58c04e1be6","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/JKHD8RKM28E8S","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 09:30:02] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 09:30:03] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 09:30:03] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 09:30:03] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 09:30:03] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 07:30:03 GMT, Server: Apache, paypal-debug-id: 5613c1753159d, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 5613c1753159d, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 09:30:03] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T07:05:12ZyST-Y9R0MmBBkOD6BlJVvu5Ygvh7JXnsSRS8VaPMp_w","access_token":"A21AAGpIPl6lBjlzUNgvdefCk4uyBxmGqXImMJq3QSRVaoK_DDimheNQX0OMWFu0AW1nUTa57-6iTWv-TOjve-nBjhazFFCEg","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30909}
+
+================================================================================================================================
+
+[04-10-2018 09:30:03] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 09:30:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAGpIPl6lBjlzUNgvdefCk4uyBxmGqXImMJq3QSRVaoK_DDimheNQX0OMWFu0AW1nUTa57-6iTWv-TOjve-nBjhazFFCEg, Content-Length: 322, , 
+[04-10-2018 09:30:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5c17aa7ab4","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"it.trash.collector@gmail.com","sender_item_id":"item_15bb5c17aa866d","amount":{"value":"12","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 09:30:05] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 09:30:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 07:30:04 GMT, Server: Apache, paypal-debug-id: 5e6806185cdd1, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 5e6806185cdd1, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 09:30:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"XN52DLVKY9MAQ","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5c17aa7ab4","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/XN52DLVKY9MAQ","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 09:34:15] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 09:34:16] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 09:34:16] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 09:34:16] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 09:34:16] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 07:34:15 GMT, Server: Apache, paypal-debug-id: 850de8959da9a, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 850de8959da9a, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 09:34:16] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T07:05:12ZyST-Y9R0MmBBkOD6BlJVvu5Ygvh7JXnsSRS8VaPMp_w","access_token":"A21AAGpIPl6lBjlzUNgvdefCk4uyBxmGqXImMJq3QSRVaoK_DDimheNQX0OMWFu0AW1nUTa57-6iTWv-TOjve-nBjhazFFCEg","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30657}
+
+================================================================================================================================
+
+[04-10-2018 09:34:16] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 09:34:17] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAGpIPl6lBjlzUNgvdefCk4uyBxmGqXImMJq3QSRVaoK_DDimheNQX0OMWFu0AW1nUTa57-6iTWv-TOjve-nBjhazFFCEg, Content-Length: 310, , 
+[04-10-2018 09:34:17] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5c27757756","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5c27757b3e","amount":{"value":"79","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 09:34:17] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 09:34:17] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 07:34:16 GMT, Server: Apache, paypal-debug-id: a5b0aa388d3b5, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: a5b0aa388d3b5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 09:34:17] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"CBANHXSBTLC4J","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5c27757756","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/CBANHXSBTLC4J","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[04-10-2018 09:37:03] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[04-10-2018 09:37:04] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Basic QVlTcTNSREdzbUJMSkUtb3RUa0J0TS1qQlJkMVRDUXdGZjlSR2Z3ZGROWFd6MHVGVTl6dHlteWxPaFJTOkVHbkhEeERfcVJQZGFMZFp6OGlDcjhON19NekYtWUhQVGtqczZOS1lRdlFTQm5ncDRQVFRWV2tQWlJiTA==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[04-10-2018 09:37:04] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 09:37:04] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[04-10-2018 09:37:04] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 07:37:03 GMT, Server: Apache, paypal-debug-id: 10181d9354e70, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 10181d9354e70, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[04-10-2018 09:37:04] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-10-04T07:05:12ZyST-Y9R0MmBBkOD6BlJVvu5Ygvh7JXnsSRS8VaPMp_w","access_token":"A21AAGpIPl6lBjlzUNgvdefCk4uyBxmGqXImMJq3QSRVaoK_DDimheNQX0OMWFu0AW1nUTa57-6iTWv-TOjve-nBjhazFFCEg","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":30489}
+
+================================================================================================================================
+
+[04-10-2018 09:37:04] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[04-10-2018 09:37:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.2.6; bit=32; os=Windows_NT_6.1; machine=i586; crypto-lib-ver=1.1.0h; curl=7.59.0), Authorization: Bearer A21AAGpIPl6lBjlzUNgvdefCk4uyBxmGqXImMJq3QSRVaoK_DDimheNQX0OMWFu0AW1nUTa57-6iTWv-TOjve-nBjhazFFCEg, Content-Length: 310, , 
+[04-10-2018 09:37:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5bb5c31f1ff0a","email_subject":"Your funds withdrawal from Quizzle.tk"},"items":[{"recipient_type":"Email","note":"Thanks you for your gaming expirience!","receiver":"admin@quizzle.tk","sender_item_id":"item_15bb5c31f206da","amount":{"value":"50","currency":"USD"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[04-10-2018 09:37:05] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[04-10-2018 09:37:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Thu, 04 Oct 2018 07:37:04 GMT, Server: Apache, paypal-debug-id: 233bb4464d4b5, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 233bb4464d4b5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 334, Connection: close, Content-Type: application/json, 
+[04-10-2018 09:37:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"ASBFPFVUU5QHU","batch_status":"PENDING","sender_batch_header":{"sender_batch_id":"5bb5c31f1ff0a","email_subject":"Your funds withdrawal from Quizzle.tk"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/ASBFPFVUU5QHU","rel":"self","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
