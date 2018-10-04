@@ -29,7 +29,7 @@
                                 <td data-sort="{{ withdrawal.dateAdded|date('U') }}">{{ withdrawal.dateAdded|date('d.m.Y H:i:s') }}</td>
                                 <td class="text-center">{{ withdrawal.user.username }}</td>
                                 <td class="text-right">
-                                    <span class="
+                                    <span data-withdrawal-amount class="
                                         {% if withdrawal.status == 'pending' %}
                                             text-warning
                                         {% elseif withdrawal.status == 'reversed' or withdrawal.status == 'cancelled' %}
@@ -114,16 +114,20 @@
                                         $('[data-updated-by]', $parent).html(data.data.updatedBy);
                                         $('[data-date-updated]', $parent).html(data.data.dateUpdated);
                                         $('[data-txn-id]', $parent).html(data.data.txnId);
+                                        $('[data-withdrawal-amount]', $parent).removeClass('text-warning text-danger text-success');
                                         switch (data.data.newStatus) {
                                             case 'complete':
+                                                $('[data-withdrawal-amount]', $parent).addClass('text-success');
                                                 $status.html('<i class="fas fa-check text-success"></i> Completed');
                                                 $actions.html('<a href="#" title="Возврат" class="btn btn-xs btn-danger" data-withdrawal-update data-action="refund" data-id="' + $this.data('id') + '"><i class="fas fa-sync-alt"></i></a>');
                                                 break;
                                             case 'reversed':
+                                                $('[data-withdrawal-amount]', $parent).addClass('text-danger');
                                                 $status.html('<i class="fas fa-sync-alt text-danger"></i> Reversed');
                                                 $actions.html('');
                                                 break;
                                             case 'cancelled':
+                                                $('[data-withdrawal-amount]', $parent).addClass('text-danger');
                                                 $status.html('<i class="fas fa-times text-danger"></i> Cancelled');
                                                 $actions.html('');
                                                 break;
