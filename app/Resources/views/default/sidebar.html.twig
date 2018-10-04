@@ -105,6 +105,11 @@
                                         <i class="fas fa-hand-holding-usd"></i> Заявки на вывод средств
                                     </a>
                                 </li>
+                                <li class="{{ curroute == 'admin_winnings' ? 'nav-active' }}">
+                                    <a class="nav-link" href="{{ path('admin_winnings') }}">
+                                        <i class="fas fa-trophy"></i> Победители розыгрышей
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     {% endif %}

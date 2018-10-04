@@ -8,10 +8,13 @@
 
 	namespace AppBundle\Controller;
 
+	use Symfony\Component\HttpFoundation\JsonResponse;
 	use Symfony\Component\Routing\Annotation\Route;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\HttpFoundation\Request;
 	use AppBundle\Entity as Entity;
+	use AppBundle\Entity\Operation;
+	use AppBundle\Entity\UserPrize;
 
 	/**
 	 * Class AdminController
@@ -35,9 +38,113 @@
 		 */
 		public function operationsAction(Request $request)
 		{
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			// Get latest spin
+			$operations = $repository->findBy(
+				[
+					'type' => ['bonus', 'win', 'exchange']
+				],
+				['id' => 'DESC']
+			);
+
 			return $this->render('dashboard/operations.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'operations' => $operations,
+				'conversion_rate' => $this->container->getParameter('loyalty_to_cash_rate')
 			]);
+		}
+
+		/**
+		 * @Route("/operations/update", name="admin_operation_update", methods={"GET", "POST"})
+		 */
+		public function operationUpdateAction(Request $request)
+		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$em = $this->getDoctrine()->getManager();
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			$id = $request->get('id');
+			$action = $request->get('action');
+
+			if($id && $action)
+			{
+				$operation = $repository->find($id);
+
+				if(!$operation)
+					return new JsonResponse(['success' => false, 'error' => 404, 'message' => 'Not found']);
+
+				$operationUser = $operation->getUser();
+
+				if($action == 'accept' && $operation->getStatus() != 'complete')
+				{
+					switch ($operation->getType())
+					{
+						case 'win':
+							$operationUser->updateBalance($operation->getAmount());
+							break;
+						case 'bonus':
+							$operationUser->updateBonusBalance($operation->getAmount());
+							break;
+						case 'exchange':
+							// Impossible situation: Pending Exchange operation. But who knows what may happen...
+							$operationUser->updateBalance(-1*$operation->getAmount());
+							$operationUser->updateBonusBalance($operation->getAmount() / $this->container->getParameter('loyalty_to_cash_rate'));
+							break;
+					}
+					$operation->setStatus('complete');
+					$operation->setUpdatedBy($user);
+					$operation->setDateUpdated(new \DateTime());
+					$em->persist($operation);
+					$em->persist($operationUser);
+				}
+				elseif($action == 'reverse' && ($operation->getStatus() == 'complete' || $operation->getStatus() == 'pending'))
+				{
+					// Reverse operation
+					if($operation->getStatus() == 'complete')
+					{
+						// Reverse balances only if completed
+						switch ($operation->getType())
+						{
+							case 'win':
+								$operationUser->updateBalance(-1 * $operation->getAmount());
+								break;
+							case 'bonus':
+								$operationUser->updateBonusBalance(-1 * $operation->getAmount());
+								break;
+							case 'exchange':
+								$operationUser->updateBalance($operation->getAmount());
+								$operationUser->updateBonusBalance(-1 * $operation->getAmount() / $this->container->getParameter('loyalty_to_cash_rate'));
+								break;
+						}
+					}
+					$operation->setStatus('reversed');
+					$operation->setUpdatedBy($user);
+					$operation->setDateUpdated(new \DateTime());
+					$em->persist($operationUser);
+					$em->persist($operation);
+				}
+				else
+				{
+					return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Bad request']);
+				}
+				// Save changes
+				$em->flush();
+
+				return new JsonResponse([
+					'success' => true,
+					'error' => 0,
+					'message' => 'Successfull update!',
+					'data' => [
+						'newStatus' => $operation->getStatus(),
+						'updatedBy' => $user->getUsername(),
+						'dateUpdated' => date('d.m.Y H:i:s')
+					]
+				]);
+			}
+
+			return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Bad request']);
 		}
 
 		/**
@@ -45,8 +152,33 @@
 		 */
 		public function withdrawalsAction(Request $request)
 		{
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			// Get latest spin
+			$withdrawals = $repository->findBy(['type' => 'withdrawal'], ['id' => 'DESC']);
+
 			return $this->render('dashboard/withdrawals.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'withdrawals' => $withdrawals,
+			]);
+		}
+
+		/**
+		 * @Route("/winnings/", name="admin_winnings")
+		 */
+		public function winningsAction(Request $request)
+		{
+			$repository = $this->getDoctrine()->getRepository(UserPrize::class);
+
+			// Get latest spin
+			$prizes = $repository->findBy(
+				[],
+				['id' => 'DESC']
+			);
+
+			return $this->render('dashboard/winnings.html.twig', [
+				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'prizes' => $prizes
 			]);
 		}
 	}

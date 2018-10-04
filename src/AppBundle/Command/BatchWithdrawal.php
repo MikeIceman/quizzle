@@ -69,6 +69,8 @@
 					$output->writeln("Payment state: ".$response->getBatchHeader()->getBatchStatus());
 
 					$operation->setStatus('complete');
+					$operation->setDateUpdated(new \DateTime());
+					$operation->setUpdatedBy(null);
 					$em->persist($operation);
 					$em->flush();
 					$output->writeln("Withdrawal request #".$operation->getId()." marked as COMPLETE");

@@ -28,6 +28,20 @@
 		private $id;
 
 		/**
+		 * @var \DateTime
+		 *
+		 * @ORM\Column(name="date_added", type="datetime", nullable=false, options={"comment":"Date and time when added"})
+		 */
+		private $dateAdded;
+
+		/**
+		 * @var \DateTime
+		 *
+		 * @ORM\Column(name="date_updated", type="datetime", nullable=false, options={"comment":"Date and time when updated"})
+		 */
+		private $dateUpdated;
+
+		/**
 		 * @var \User
 		 *
 		 * @ORM\ManyToOne(targetEntity="User", inversedBy="operations")
@@ -36,6 +50,16 @@
 		 * })
 		 */
 		private $user;
+
+		/**
+		 * @var \User
+		 *
+		 * @ORM\ManyToOne(targetEntity="User")
+		 * @ORM\JoinColumns({
+		 *   @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+		 * })
+		 */
+		private $updatedBy;
 
 		/**
 		 * @var string
@@ -59,7 +83,8 @@
 		private $status;
 
 		public function __construct() {
-
+			$this->setDateAdded(new \DateTime());
+			$this->setDateUpdated(new \DateTime());
 		}
 
 		/**
@@ -79,6 +104,38 @@
 		}
 
 		/**
+		 * @return \DateTime
+		 */
+		public function getDateAdded()
+		{
+			return $this->dateAdded;
+		}
+
+		/**
+		 * @param \DateTime $dateAdded
+		 */
+		public function setDateAdded($dateAdded)
+		{
+			$this->dateAdded = $dateAdded;
+		}
+
+		/**
+		 * @return \DateTime
+		 */
+		public function getDateUpdated()
+		{
+			return $this->dateUpdated;
+		}
+
+		/**
+		 * @param \DateTime $dateUpdated
+		 */
+		public function setDateUpdated($dateUpdated)
+		{
+			$this->dateUpdated = $dateUpdated;
+		}
+
+		/**
 		 * @return \User
 		 */
 		public function getUser()
@@ -92,6 +149,22 @@
 		public function setUser($user)
 		{
 			$this->user = $user;
+		}
+
+		/**
+		 * @return \User
+		 */
+		public function getUpdatedBy()
+		{
+			return $this->updatedBy;
+		}
+
+		/**
+		 * @param \User $updatedBy
+		 */
+		public function setUpdatedBy($updatedBy)
+		{
+			$this->updatedBy = $updatedBy;
 		}
 
 		/**

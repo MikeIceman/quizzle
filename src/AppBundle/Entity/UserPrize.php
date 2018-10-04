@@ -52,6 +52,16 @@
 		private $dateUpdated;
 
 		/**
+		 * @var \User
+		 *
+		 * @ORM\ManyToOne(targetEntity="User")
+		 * @ORM\JoinColumns({
+		 *   @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+		 * })
+		 */
+		private $updatedBy;
+
+		/**
 		 * @var string
 		 *
 		 * @ORM\Column(name="status", type="string", nullable=false, columnDefinition="enum('pending', 'sent', 'received', 'rejected')", options={"default": "pending", "comment":"Current delivery status"})
@@ -146,6 +156,22 @@
 		public function setDateUpdated($dateUpdated)
 		{
 			$this->dateUpdated = $dateUpdated;
+		}
+
+		/**
+		 * @return \User
+		 */
+		public function getUpdatedBy()
+		{
+			return $this->updatedBy;
+		}
+
+		/**
+		 * @param \User $updatedBy
+		 */
+		public function setUpdatedBy($updatedBy)
+		{
+			$this->updatedBy = $updatedBy;
 		}
 
 		/**

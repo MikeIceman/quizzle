@@ -31,7 +31,8 @@
                                         Обмен денежных средств на бонусные баллы
                                     {% elseif operation.type == 'withdrawal' %}
                                         Вывод средств
-                                    {% endif %}</td>
+                                    {% endif %}
+                                </td>
                                 <td class="text-right">
                                     {% if operation.type == 'bonus' %}
                                         <span class="text-success"><i class="far fa-star"></i> {{ operation.amount|number(0) }}</span>

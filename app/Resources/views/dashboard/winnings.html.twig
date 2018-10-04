@@ -1,0 +1,121 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Победители розыгрышей ценных призов</h2>
+            </header>
+            <div class="card-body">
+                <table class="table table-bordered table-striped datatable" id="datatable-default">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата создания</th>
+                        <th>Пользователь</th>
+                        <th>Приз</th>
+                        <th>Статус</th>
+                        <th>Обновлено</th>
+                        <th>Оператор</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for prize in prizes %}
+                    <tr>
+                        <td class="text-right">{{ prize.id }}</td>
+                        <td data-sort="{{ prize.dateAdded|date('U') }}">{{ prize.dateAdded|date('d.m.Y H:i:s') }}</td>
+                        <td class="text-center">
+                            {% if prize.user %}
+                                {{ prize.user.username }}
+                            {% else %}
+                                <span class="text-danger">System</span>
+                            {% endif %}
+                        </td>
+                        <td><b>{{ prize.prize.title }}</b></td>
+                        <td class="text-center" style="white-space: nowrap" data-sort="{{ prize.status }}">
+                            {% if prize.status == 'pending' %}
+                                <i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting shipment"></i>
+                            {% elseif prize.status == 'sent' %}
+                                <i class="fas fa-truck text-primary" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting delivery"></i>
+                            {% elseif prize.status == 'received' %}
+                                <i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Delivered"></i>
+                            {% elseif prize.status == 'rejected' %}
+                                <i class="fas fa-times text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Rejected"></i>
+                            {% else %}
+                            {% endif %}
+                        </td>
+                        <td data-sort="{{ prize.dateUpdated|date('U') }}">{{ prize.dateUpdated|date('d.m.Y H:i:s') }}</td>
+                        <td class="text-center font-weight-bold">
+                            {% if prize.updatedBy %}
+                                {{ prize.updatedBy.username }}
+                            {% else %}
+                                <span class="text-danger">System</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center" data-sort="{{ prize.status }}">
+                            {% if prize.status == 'pending' %}
+                                <a href="#" title="Отправить" class="btn btn-xs btn-primary" data-toggle="tooltip" data-original-title="Отправить"><i class="fas fa-truck"></i></a>
+                                <a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-toggle="tooltip" data-original-title="Отменить"><i class="fas fa-times"></i></a>
+                            {% elseif prize.status == 'sent' %}
+                                <a href="#" title="Доставлено" class="btn btn-xs btn-success" data-toggle="tooltip" data-original-title="Доставлено"><i class="fas fa-check"></i></a>
+                                <a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-toggle="tooltip" data-original-title="Отменить"><i class="fas fa-sync-alt"></i></a>
+                            {% elseif prize.status == 'received' %}
+
+                            {% elseif prize.status == 'rejected' %}
+                                <a href="#" title="Отправить" class="btn btn-xs btn-primary" data-toggle="tooltip" data-original-title="Отправить"><i class="fas fa-truck"></i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        (function($) {
+
+            'use strict';
+
+            $(function() {
+                $('.datatable').dataTable({
+                    "pageLength": 50,
+                    "ordering": false
+                });
+
+                /*$('[data-user-delete]').on('click', function(e){
+                    e.preventDefault();
+                    if(confirm('Вы уверены?'))
+                    {
+                        return true;
+                    }
+                });*/
+            });
+
+        }).apply(this, [jQuery]);
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <header class="page-header">
+        <h2>Победители розыгрышей ценных призов</h2>
+
+        <div class="right-wrapper text-right pr-5">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="{{ path('dashboard') }}" title="Рабочий стол">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </header>
+{% endblock %}
+
+{% block title %}Победители розыгрышей ценных призов{% endblock %}
