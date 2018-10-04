@@ -30,5 +30,23 @@
 			]);
 		}
 
-		
+		/**
+		 * @Route("/operations/", name="admin_operations")
+		 */
+		public function operationsAction(Request $request)
+		{
+			return $this->render('dashboard/operations.html.twig', [
+				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+			]);
+		}
+
+		/**
+		 * @Route("/withdrawals/", name="admin_withdrawals")
+		 */
+		public function withdrawalsAction(Request $request)
+		{
+			return $this->render('dashboard/withdrawals.html.twig', [
+				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+			]);
+		}
 	}
