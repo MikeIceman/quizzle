@@ -33,6 +33,8 @@
 			]);
 		}
 
+		#region Operations
+
 		/**
 		 * @Route("/operations/", name="admin_operations")
 		 */
@@ -147,6 +149,8 @@
 			return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Bad request']);
 		}
 
+		#endregion
+
 		/**
 		 * @Route("/withdrawals/", name="admin_withdrawals")
 		 */
@@ -162,6 +166,8 @@
 				'withdrawals' => $withdrawals,
 			]);
 		}
+
+		#region Winnings
 
 		/**
 		 * @Route("/winnings/", name="admin_winnings")
@@ -181,4 +187,73 @@
 				'prizes' => $prizes
 			]);
 		}
+
+		/**
+		 * @Route("/winnings/update", name="admin_winnings_update", methods={"GET", "POST"})
+		 */
+		public function winningUpdateAction(Request $request)
+		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$em = $this->getDoctrine()->getManager();
+			$repository = $this->getDoctrine()->getRepository(UserPrize::class);
+
+			$id = $request->get('id');
+			$action = $request->get('action');
+
+			if($id && $action)
+			{
+				$prize = $repository->find($id);
+
+				if(!$prize)
+					return new JsonResponse(['success' => false, 'error' => 404, 'message' => 'Not found']);
+
+				if($action == 'send' && $prize->getStatus() != 'sent' && $prize->getStatus() != 'received')
+				{
+					$prize->setStatus('sent');
+				}
+				elseif($action == 'reject' && $prize->getStatus() != 'complete')
+				{
+					// How can we reverse operation if order already received?
+					$prize->setStatus('rejected');
+				}
+				elseif($action == 'delivered' && $prize->getStatus() == 'sent')
+				{
+					// Only sent can be delivered
+					$prize->setStatus('received');
+				}
+				elseif($action == 'return' && $prize->getStatus() == 'sent')
+				{
+					// Only sent can be delivered
+					$prize->setStatus('pending');
+				}
+				else
+				{
+					return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Bad request']);
+				}
+
+				$prize->setUpdatedBy($user);
+				$prize->setDateUpdated(new \DateTime());
+				$em->persist($prize);
+
+				// TODO: Probably user email notification
+
+				// Save changes
+				$em->flush();
+
+				return new JsonResponse([
+					'success' => true,
+					'error' => 0,
+					'message' => 'Successfull update!',
+					'data' => [
+						'newStatus' => $prize->getStatus(),
+						'updatedBy' => $user->getUsername(),
+						'dateUpdated' => date('d.m.Y H:i:s')
+					]
+				]);
+			}
+
+			return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Bad request']);
+		}
+		#endregion
 	}

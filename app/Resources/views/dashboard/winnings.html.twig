@@ -34,7 +34,7 @@
                             {% endif %}
                         </td>
                         <td><b>{{ prize.prize.title }}</b></td>
-                        <td class="text-center" style="white-space: nowrap" data-sort="{{ prize.status }}">
+                        <td data-winning-status class="text-center" style="white-space: nowrap" data-sort="{{ prize.status }}">
                             {% if prize.status == 'pending' %}
                                 <i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting shipment"></i>
                             {% elseif prize.status == 'sent' %}
@@ -47,24 +47,24 @@
                             {% endif %}
                         </td>
                         <td data-sort="{{ prize.dateUpdated|date('U') }}">{{ prize.dateUpdated|date('d.m.Y H:i:s') }}</td>
-                        <td class="text-center font-weight-bold">
+                        <td data-updated-by class="text-center font-weight-bold">
                             {% if prize.updatedBy %}
                                 {{ prize.updatedBy.username }}
                             {% else %}
                                 <span class="text-danger">System</span>
                             {% endif %}
                         </td>
-                        <td class="text-center" data-sort="{{ prize.status }}">
+                        <td  data-actions class="text-center" data-sort="{{ prize.status }}">
                             {% if prize.status == 'pending' %}
-                                <a href="#" title="Отправить" class="btn btn-xs btn-primary" data-toggle="tooltip" data-original-title="Отправить"><i class="fas fa-truck"></i></a>
-                                <a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-toggle="tooltip" data-original-title="Отменить"><i class="fas fa-times"></i></a>
+                                <a href="#" title="Отправить" class="btn btn-xs btn-primary" data-prize-update data-action="send" data-id="{{ prize.id }}"><i class="fas fa-truck"></i></a>
+                                <a href="#" title="Отменить" class="btn btn-xs btn-danger" data-prize-update data-action="reject" data-id="{{ prize.id }}"><i class="fas fa-times"></i></a>
                             {% elseif prize.status == 'sent' %}
-                                <a href="#" title="Доставлено" class="btn btn-xs btn-success" data-toggle="tooltip" data-original-title="Доставлено"><i class="fas fa-check"></i></a>
-                                <a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-toggle="tooltip" data-original-title="Отменить"><i class="fas fa-sync-alt"></i></a>
+                                <a href="#" title="Доставлено" class="btn btn-xs btn-success" data-prize-update data-action="delivered" data-id="{{ prize.id }}"><i class="fas fa-check"></i></a>
+                                <a href="#" title="Вернуть" class="btn btn-xs btn-warning" data-prize-update data-action="return" data-id="{{ prize.id }}"><i class="fas fa-sync-alt"></i></a>
                             {% elseif prize.status == 'received' %}
 
                             {% elseif prize.status == 'rejected' %}
-                                <a href="#" title="Отправить" class="btn btn-xs btn-primary" data-toggle="tooltip" data-original-title="Отправить"><i class="fas fa-truck"></i></a>
+                                <a href="#" title="Отправить" class="btn btn-xs btn-primary" data-prize-update data-action="send" data-id="{{ prize.id }}"><i class="fas fa-truck"></i></a>
                             {% endif %}
                         </td>
                     </tr>
@@ -89,13 +89,94 @@
                     "ordering": false
                 });
 
-                /*$('[data-user-delete]').on('click', function(e){
+                $(document).on('click', '[data-prize-update]',function(e){
                     e.preventDefault();
+                    var $this = $(this);
+                    var $parent = $this.closest('tr');
                     if(confirm('Вы уверены?'))
                     {
-                        return true;
+                        console.log($this.data('id'));
+                        console.log($this.data('action'));
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ path('admin_winnings_update') }}',
+                            data: {id: $this.data('id'), action: $this.data('action')},
+                            success: function(data){
+                                if(typeof data !== 'undefined' && data)
+                                {
+                                    if(data.success)
+                                    {
+                                        var $status = $('[data-winning-status]', $parent);
+                                        var $actions = $('[data-actions]', $parent);
+                                        $('[data-updated-by]', $parent).html(data.data.updatedBy);
+                                        $('[data-date-updated]', $parent).html(data.data.dateUpdated);
+
+                                        switch (data.data.newStatus) {
+                                            case 'sent':
+                                                $status.html('<i class="fas fa-truck text-primary" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting delivery"></i>');
+                                                $actions.html(
+                                                    '<a href="#" title="Доставлено" class="btn btn-xs btn-success" data-prize-update data-action="delivered" data-id="' + $this.data('id') + '"><i class="fas fa-check"></i></a> ' +
+                                                    '<a href="#" title="Вернуть" class="btn btn-xs btn-warning" data-prize-update data-action="return" data-id="' + $this.data('id') + '"><i class="fas fa-sync-alt"></i></a>'
+                                                );
+                                                break;
+                                            case 'received':
+                                                $status.html('<i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Delivered"></i>');
+                                                $actions.html('');
+                                                break;
+                                            case 'rejected':
+                                                $status.html('<i class="fas fa-times text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Rejected"></i>');
+                                                $actions.html('<a href="#" title="Отправить" class="btn btn-xs btn-primary" data-prize-update data-action="send" data-id="' + $this.data('id') + '"><i class="fas fa-truck"></i></a>');
+                                                break;
+                                            case 'pending':
+                                                $status.html('<i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Awaiting shipment"></i>');
+                                                $actions.html(
+                                                    '<a href="#" title="Отправить" class="btn btn-xs btn-primary" data-prize-update data-action="send" data-id="' + $this.data('id') + '"><i class="fas fa-truck"></i></a> ' +
+                                                    '<a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-prize-update data-action="reject" data-id="' + $this.data('id') + '"><i class="fas fa-times"></i></a>'
+                                                );
+                                                break;
+                                            case 'received':
+                                                $status.html('<i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Delivered"></i>');
+                                                $actions.html('');
+                                                break;
+                                            default:
+                                                break;
+                                        }
+
+                                        new PNotify({
+                                            title: 'Success!',
+                                            text: 'Запись успешно обновлена',
+                                            type: 'success'
+                                        });
+                                    }
+                                    else
+                                    {
+                                        // Handle error
+                                        new PNotify({
+                                            title: 'Error!',
+                                            text: data.error + ': ' + data.message,
+                                            type: 'error'
+                                        });
+                                    }
+                                } else {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: 'Something went wrong!',
+                                        type: 'error'
+                                    });
+                                }
+                            },
+                            error: function(){
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                            }
+                        });
                     }
-                });*/
+                });
             });
 
         }).apply(this, [jQuery]);
