@@ -1,77 +1,81 @@
-Symfony Standard Edition
+Quizzle Demo Application v1.0
 ========================
+[![Symfony](https://img.shields.io/badge/Powered_by-Symfony_Framework-green.svg?style=flat)](https://symfony.com/)
 
-**WARNING**: This distribution does not support Symfony 4. See the
-[Installing & Setting up the Symfony Framework][15] page to find a replacement
-that fits you best.
+**WARNING**: This is only a demo application! **Viewer discretion is advised.** 
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+## What's inside?
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+**Quizzle** is a fast and simple lottery site with several games and some base functions: 
 
-What's inside?
+  * Registration, Authentication and Restore password;
+
+  * Several popular games types with real prizes, cash prizes and bonus scores;
+
+  * Admin interface to control base entities and operations;
+
+  * Swiftmailer as a primary mailing engine;
+
+  * Lightweight and pretty responsive template;
+  
+  * ... and many-many-many other cool stuff.
+
+## Quick start
+
+You don't need to clone whole project if you only wanna see how it works
+
+Just visit our [**DEMO SITE**](https://www.quizzle.tk/) to check this out!
+
+Default users credentials:
+
+```
+Admin user
+ - Login: adminuser
+ - Password: adminpassword
+
+Test user
+ - Login: testuser
+ - Password: testpassword
+```
+
+...or register new one with registration form!
+No email confirmation needed!
+  
+## Database Model
+
+![](https://clip2net.com/clip/m0/e709f-clip-101kb.png?nocache=1)
+
+## ER Model
+
+```
+Too many stuff;
+Will be added later.
+```
+
+How to install?
 --------------
 
-The Symfony Standard Edition is configured with the following defaults:
+Installation is very fast and simple:
 
-  * An AppBundle you can use to start coding;
+  * [**Clone**][1] git repository 
 
-  * Twig as the only configured template engine;
+  * [**Run**][2] composer
 
-  * Doctrine ORM/DBAL;
+  * Fill all prompted fields
 
-  * Swiftmailer;
+  * [**Create**][3] database with Symfony console
 
-  * Annotations enabled for everything.
+  * [**Create**][4] fist Superadmin user with Symfony console
 
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+  * [**Configure**][5] your webserver document root and other stuff
 
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
 
 Enjoy!
 
-[1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
-[15]: https://symfony.com/doc/current/setup.html
+[1]:  https://git-scm.com/book/it/v2/Git-Basics-Getting-a-Git-Repository
+[2]:  https://getcomposer.org/doc/01-basic-usage.md
+[3]:  https://symfony.com/doc/current/doctrine.html
+[4]:  https://symfony.com/doc/2.0/bundles/FOSUserBundle/command_line_tools.html
+[5]:  https://symfony.com/doc/3.4/setup/web_server_configuration.html
