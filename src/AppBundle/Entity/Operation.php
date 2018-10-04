@@ -78,9 +78,16 @@
 		/**
 		 * @var string
 		 *
-		 * @ORM\Column(name="operation_status", type="string", nullable=false, columnDefinition="enum('pending', 'complete', 'reversed')", options={"default": "pending", "comment": "Operation status"})
+		 * @ORM\Column(name="operation_status", type="string", nullable=false, columnDefinition="enum('pending', 'complete', 'reversed', 'cancelled')", options={"default": "pending", "comment": "Operation status"})
 		 */
 		private $status;
+
+		/**
+		 * @var string
+		 *
+		 * @ORM\Column(name="transaction_id", type="string", length=50, nullable=true, options={"comment": "Paysystem transaction ID"})
+		 */
+		private $txnId;
 
 		public function __construct() {
 			$this->setDateAdded(new \DateTime());
@@ -213,6 +220,22 @@
 		public function setStatus($status)
 		{
 			$this->status = $status;
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getTxnId()
+		{
+			return $this->txnId;
+		}
+
+		/**
+		 * @param string $txnId
+		 */
+		public function setTxnId($txnId)
+		{
+			$this->txnId = $txnId;
 		}
 
 

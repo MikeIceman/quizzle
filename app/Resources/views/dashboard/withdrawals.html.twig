@@ -16,6 +16,7 @@
                             <th>Пользователь</th>
                             <th>Сумма</th>
                             <th>Статус</th>
+                            <th>TxnID</th>
                             <th>Обновлено</th>
                             <th>Оператор</th>
                             <th>Действия</th>
@@ -31,7 +32,7 @@
                                     <span class="
                                         {% if withdrawal.status == 'pending' %}
                                             text-warning
-                                        {% elseif withdrawal.status == 'reversed' %}
+                                        {% elseif withdrawal.status == 'reversed' or withdrawal.status == 'cancelled' %}
                                             text-danger
                                         {% else %}
                                             text-success
@@ -40,29 +41,32 @@
                                     {{ withdrawal.amount|money(2) }}
                                     </span>
                                 </td>
-                                <td class="text-center" data-sort="{{ withdrawal.status }}">
+                                <td data-operation-status class="text-center" data-sort="{{ withdrawal.status }}">
                                     {% if withdrawal.status == 'pending' %}
-                                        <i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Pending"></i> Pending
+                                        <i class="far fa-clock text-warning"></i> Pending
                                     {% elseif withdrawal.status == 'complete' %}
-                                        <i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Completed"></i> Completed
+                                        <i class="fas fa-check text-success"></i> Completed
                                     {% elseif withdrawal.status == 'reversed' %}
-                                        <i class="fas fa-sync-alt text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Reversed"></i> Reversed
+                                        <i class="fas fa-sync-alt text-danger"></i> Reversed
+                                    {% elseif withdrawal.status == 'cancelled' %}
+                                        <i class="fas fa-times text-danger"></i> Cancelled
                                     {% endif %}
                                 </td>
+                                <td data-txn-id class="text-right">{{ withdrawal.txnId }}</td>
                                 <td data-sort="{{ withdrawal.dateUpdated|date('U') }}">{{ withdrawal.dateUpdated|date('d.m.Y H:i:s') }}</td>
-                                <td class="text-center font-weight-bold">
+                                <td data-updated-by class="text-center font-weight-bold">
                                     {% if withdrawal.updatedBy %}
                                         {{ withdrawal.updatedBy.username }}
                                     {% else %}
                                         <span class="text-danger">System</span>
                                     {% endif %}
                                 </td>
-                                <td class="text-center" data-sort="{{ withdrawal.status }}">
+                                <td data-actions class="text-center">
                                     {% if withdrawal.status == 'pending' %}
-                                        <a href="#" title="Подтвердить" class="btn btn-xs btn-success" data-toggle="tooltip" data-original-title="Подтвердить"><i class="fas fa-check"></i></a>
-                                        <a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-toggle="tooltip" data-original-title="Отменить"><i class="fas fa-sync-alt"></i></a>
+                                        <a href="#" title="Подтвердить" class="btn btn-xs btn-success" data-withdrawal-update data-action="approve" data-id="{{ withdrawal.id }}"><i class="fas fa-check"></i></a>
+                                        <a href="#" title="Отменить" class="btn btn-xs btn-danger" data-withdrawal-update data-action="cancel" data-id="{{ withdrawal.id }}"><i class="fas fa-times"></i></a>
                                     {% elseif withdrawal.status == 'complete' %}
-                                        <a href="#" title="Отменить" class="btn btn-xs btn-danger"  data-toggle="tooltip" data-original-title="Отменить"><i class="fas fa-sync-alt"></i></a>
+                                        <a href="#" title="Возврат" class="btn btn-xs btn-danger" data-withdrawal-update data-action="refund" data-id="{{ withdrawal.id }}"><i class="fas fa-sync-alt"></i></a>
                                     {% endif %}
                                 </td>
                             </tr>
@@ -87,13 +91,78 @@
                     "ordering": false
                 });
 
-                /*$('[data-user-delete]').on('click', function(e){
+                $(document).on('click', '[data-withdrawal-update]',function(e){
                     e.preventDefault();
+                    var $this = $(this);
+                    var $parent = $this.closest('tr');
                     if(confirm('Вы уверены?'))
                     {
-                        return true;
+                        console.log($this.data('id'));
+                        console.log($this.data('action'));
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ path('admin_withdrawal_update') }}',
+                            data: {id: $this.data('id'), action: $this.data('action')},
+                            success: function(data){
+                                if(typeof data !== 'undefined' && data)
+                                {
+                                    if(data.success)
+                                    {
+                                        var $status = $('[data-operation-status]', $parent);
+                                        var $actions = $('[data-actions]', $parent);
+                                        $('[data-updated-by]', $parent).html(data.data.updatedBy);
+                                        $('[data-date-updated]', $parent).html(data.data.dateUpdated);
+                                        $('[data-txn-id]', $parent).html(data.data.txnId);
+                                        switch (data.data.newStatus) {
+                                            case 'complete':
+                                                $status.html('<i class="fas fa-check text-success"></i> Completed');
+                                                $actions.html('<a href="#" title="Возврат" class="btn btn-xs btn-danger" data-withdrawal-update data-action="refund" data-id="' + $this.data('id') + '"><i class="fas fa-sync-alt"></i></a>');
+                                                break;
+                                            case 'reversed':
+                                                $status.html('<i class="fas fa-sync-alt text-danger"></i> Reversed');
+                                                $actions.html('');
+                                                break;
+                                            case 'cancelled':
+                                                $status.html('<i class="fas fa-times text-danger"></i> Cancelled');
+                                                $actions.html('');
+                                                break;
+                                        }
+
+                                        new PNotify({
+                                            title: 'Success!',
+                                            text: 'Запись успешно обновлена',
+                                            type: 'success'
+                                        });
+                                    }
+                                    else
+                                    {
+                                        // Handle error
+                                        new PNotify({
+                                            title: 'Error!',
+                                            text: data.error + ': ' + data.message,
+                                            type: 'error'
+                                        });
+                                    }
+                                } else {
+                                    // Handle error
+                                    new PNotify({
+                                        title: 'Error!',
+                                        text: 'Something went wrong!',
+                                        type: 'error'
+                                    });
+                                }
+                            },
+                            error: function(){
+                                new PNotify({
+                                    title: 'Error!',
+                                    text: 'Something went wrong!',
+                                    type: 'error'
+                                });
+                            }
+                        });
                     }
-                });*/
+                });
             });
 
         }).apply(this, [jQuery]);

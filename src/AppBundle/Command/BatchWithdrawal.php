@@ -68,6 +68,7 @@
 					$output->writeln("Batch ID: ".$response->getBatchHeader()->getPayoutBatchId());
 					$output->writeln("Payment state: ".$response->getBatchHeader()->getBatchStatus());
 
+					$operation->setTxnId($response->getBatchHeader()->getPayoutBatchId());
 					$operation->setStatus('complete');
 					$operation->setDateUpdated(new \DateTime());
 					$operation->setUpdatedBy(null);

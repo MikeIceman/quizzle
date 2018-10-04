@@ -15,6 +15,7 @@
 	use AppBundle\Entity as Entity;
 	use AppBundle\Entity\Operation;
 	use AppBundle\Entity\UserPrize;
+	use AppBundle\Service\Banking;
 
 	/**
 	 * Class AdminController
@@ -151,6 +152,7 @@
 
 		#endregion
 
+		#region Withdrawals
 		/**
 		 * @Route("/withdrawals/", name="admin_withdrawals")
 		 */
@@ -166,6 +168,83 @@
 				'withdrawals' => $withdrawals,
 			]);
 		}
+
+		/**
+		 * @Route("/withdrawals/update", name="admin_withdrawal_update", methods={"GET", "POST"})
+		 */
+		public function withdrawalUpdateAction(Request $request)
+		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$banking = $this->get(Banking::class);
+
+			$em = $this->getDoctrine()->getManager();
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			$id = $request->get('id');
+			$action = $request->get('action');
+
+			if ($id && $action) {
+				$operation = $repository->find($id);
+
+				if (!$operation)
+					return new JsonResponse(['success' => false, 'error' => 404, 'message' => 'Not found']);
+
+				$operationUser = $operation->getUser();
+
+				if($action == 'approve' && $operation->getStatus() == 'pending')
+				{
+					// Send txn and update entity
+					try
+					{
+						$response = $banking->sendWithdrawalRequest($operation);
+						$operation->setTxnId($response->getBatchHeader()->getPayoutBatchId());
+						$operation->setStatus('complete');
+					}
+					catch (\Exception $ex)
+					{
+						return new JsonResponse(['success' => false, 'error' => 500, 'message' => 'Internal error']);
+					}
+				}
+				elseif($action == 'cancel' && $operation->getStatus() == 'pending')
+				{
+					$operation->setStatus('cancelled');
+					$operationUser->updateBalance($operation->getAmount());
+				}
+				elseif($action == 'refund' && $operation->getStatus() == 'complete')
+				{
+					$operation->setStatus('reversed');
+					$operationUser->updateBalance($operation->getAmount());
+				}
+				else
+				{
+					return new JsonResponse(['success' => false, 'error' => 400, 'message' => 'Bad request']);
+				}
+				$operation->setUpdatedBy($user);
+				$operation->setDateUpdated(new \DateTime());
+				$em->persist($operationUser);
+				$em->persist($operation);
+
+				// Save changes
+				$em->flush();
+
+				return new JsonResponse([
+					'success' => true,
+					'error' => 0,
+					'message' => 'Successfull update!',
+					'data' => [
+						'newStatus' => $operation->getStatus(),
+						'updatedBy' => $user->getUsername(),
+						'dateUpdated' => date('d.m.Y H:i:s'),
+						'txnId' => $operation->getTxnId()
+					]
+				]);
+			}
+		}
+
+
+
+		#endregion
 
 		#region Winnings
 
