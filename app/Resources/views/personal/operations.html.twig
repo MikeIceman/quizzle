@@ -2,13 +2,71 @@
 
 {% block body %}
     <div class="row">
-        To be deployed
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <h2 class="card-title">Операции с балансом</h2>
+                </header>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped datatable" id="datatable-default">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Тип операции</th>
+                            <th>Сумма</th>
+                            <th>Статус</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for operation in operations %}
+
+                            <tr>
+                                <td class="text-right">{{ operation.id }}</td>
+                                <td class="text-left">
+                                    {% if operation.type == 'bonus' %}
+                                        Победа в розыгрыше бонусных баллов
+                                    {% elseif operation.type == 'win' %}
+                                        Победа в розыгрыше денежных призов
+                                    {% elseif operation.type == 'exchange' %}
+                                        Обмен денежных средств на бонусные баллы
+                                    {% elseif operation.type == 'withdrawal' %}
+                                        Вывод средств
+                                    {% endif %}</td>
+                                <td class="text-right">
+                                    {% if operation.type == 'bonus' %}
+                                        <span class="text-success"><i class="far fa-star"></i> {{ operation.amount|number(0) }}</span>
+                                    {% elseif operation.type == 'win' %}
+                                        <span class="text-success">+ {{ operation.amount|money(2) }}</span>
+                                    {% elseif operation.type == 'exchange' %}
+                                        <span class="text-danger">- {{ operation.amount|money(2) }}</span><br/>
+                                        <span class="text-success"><i class="far fa-star"></i> {{ (operation.amount/conversion_rate)|number(0) }}</span>
+                                    {% elseif operation.type == 'withdrawal' %}
+                                        <span class="text-danger">- {{ operation.amount|money(2) }}</span>
+                                    {% endif %}
+                                </td>
+                                </td>
+                                <td class="text-center" data-sort="{{ operation.status }}">
+                                    {% if operation.status == 'pending' %}
+                                        <i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Pending"></i> Pending
+                                    {% elseif operation.status == 'complete' %}
+                                        <i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Completed"></i> Completed
+                                    {% elseif operation.status == 'reversed' %}
+                                        <i class="fas fa-sync-alt text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Reversed"></i> Reversed
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
     </div>
 {% endblock %}
 
 {% block breadcrumbs %}
     <header class="page-header">
-        <h2>Вывод средств</h2>
+        <h2>Операции</h2>
 
         <div class="right-wrapper text-right pr-5">
             <ol class="breadcrumbs">
@@ -23,4 +81,4 @@
     </header>
 {% endblock %}
 
-{% block title %}Вывод средств{% endblock %}
+{% block title %}Операции{% endblock %}

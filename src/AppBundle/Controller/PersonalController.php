@@ -100,13 +100,15 @@
 			$operations = $repository->findBy(
 				[
 					'user' => $user,
+					'type' => ['bonus', 'win', 'exchange']
 				],
-				['id' => 'ASC']
+				['id' => 'DESC']
 			);
 
 			return $this->render('personal/operations.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 				'operations' => $operations,
+				'conversion_rate' => $this->container->getParameter('loyalty_to_cash_rate')
 			]);
 		}
 
@@ -115,8 +117,23 @@
 		 */
 		public function withdrawalsAction(Request $request)
 		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			// Get latest spin
+			$withdrawals = $repository->findBy(
+				[
+					'user' => $user,
+					'type' => 'withdrawal'
+				],
+				['id' => 'DESC']
+			);
+
+			// Deprecated: no more need this action because all withdrawals are in "Operations" wiew
 			return $this->render('personal/withdrawals.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'withdrawals' => $withdrawals,
 			]);
 		}
 	}
