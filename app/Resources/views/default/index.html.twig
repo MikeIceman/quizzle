@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="widget-summary-col">
                                     <div class="summary">
-                                        <h4 class="title">Бонусные баллы</h4>
+                                        <h4 class="title">Ваши бонусы</h4>
                                         <div class="info">
                                             <strong class="amount" id="BonusAmount">{{ bonuses|number(2) }}</strong>
                                         </div>
@@ -145,11 +145,10 @@
                                         <h4 class="title">Проведено розыгрышей</h4>
                                         <div class="info">
                                             <strong class="amount">{{ spins }}</strong>
-                                            {% if new_spins > 0 %}<span class="text-primary">({{ new_spins }} новых)</span>{% endif %}
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a class="text-muted text-uppercase" href="#">(результаты розыгрышей)</a>
+                                        <a class="text-muted text-uppercase" href="{{ path('personal_winnings') }}">(мои результаты)</a>
                                     </div>
                                 </div>
                             </div>
@@ -167,13 +166,13 @@
                                 </div>
                                 <div class="widget-summary-col">
                                     <div class="summary">
-                                        <h4 class="title">Победителей сегодня</h4>
+                                        <h4 class="title">Выиграно призов</h4>
                                         <div class="info">
                                             <strong class="amount">{{ winners }}</strong>
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a class="text-muted text-uppercase" href="#">(подробнее)</a>
+                                        <a class="text-muted text-uppercase" href="{{ path('personal_prizes') }}">(мои призы)</a>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +198,7 @@
                                         </div>
                                     </div>
                                     <div class="summary-footer">
-                                        <a class="text-muted text-uppercase" href="#">(мои выплаты)</a>
+                                        <a class="text-muted text-uppercase" href="{{ path('personal_withdrawals') }}">(мои выплаты)</a>
                                     </div>
                                 </div>
                             </div>
@@ -222,9 +221,11 @@
                                             <strong class="amount">{{ members_count }}</strong>
                                         </div>
                                     </div>
+                                    {#
                                     <div class="summary-footer">
                                         <a class="text-muted text-uppercase" href="#">(топ участников)</a>
                                     </div>
+                                    #}
                                 </div>
                             </div>
                         </div>

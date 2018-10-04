@@ -1,9 +1,69 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        To be deployed
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Мои выигрыши</h2>
+            </header>
+            <div class="card-body">
+                <table class="table table-bordered table-striped datatable" id="datatable-default">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Дата</th>
+                        <th>Выигрыш</th>
+                        <th>Количество</th>
+                        <th>Статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for winning in winnings %}
+                        {% set loopIndex = loop.index %}
+                        <tr>
+                            <td class="text-right">{{ winning.id }}</td>
+                            <td data-sort="{{ winning.dateSpinned|date("U") }}">{{ winning.dateSpinned|date("d.m.Y H:i:s") }}</td>
+                            <td>
+                                {% if winning.prizeType == 'bonus' %}
+                                    Бонусные баллы
+                                {% elseif winning.prizeType == 'cash' %}
+                                    Денежный выигрыш
+                                {% elseif winning.prizeType == 'prize' %}
+                                    <b>{{ winning.prize.title }}</b>
+                                {% else %}
+
+                                {% endif %}
+                            </td>
+                            <td class="text-right" data-sort="{{ winning.prizeAmount|number(0) }}">
+                                {% if winning.prizeType == 'bonus' %}
+                                    {{ winning.prizeAmount|number(0) }}
+                                {% elseif winning.prizeType == 'cash' %}
+                                    {{ winning.prizeAmount|money(2) }}
+                                {% elseif winning.prizeType == 'prize' %}
+                                    1 X <img class="img-fluid" src="{{ winning.prize.image }}" style="max-height:30px;margin:-15px 0;cursor: help" data-toggle="popover" data-container="body" data-placement="top" title="" data-original-title="{{ winning.prize.title }}" data-content="{{ winning.prize.description }}" />
+                                {% else %}
+                                    {{ winning.prizeAmount }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center" style="white-space: nowrap" data-sort="{{ winning.status }}">
+                                {% if winning.status == 'pending' %}
+                                    <i class="far fa-clock text-warning" style="cursor: help" data-toggle="tooltip" data-original-title="Pending"></i>
+                                {% elseif winning.status == 'accepted' %}
+                                    <i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Accepted"></i>
+                                {% elseif winning.status == 'rejected' %}
+                                    <i class="fas fa-times text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Rejected"></i>
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
+</div>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -24,3 +84,19 @@
 {% endblock %}
 
 {% block title %}Мои выигрыши{% endblock %}
+
+{% block javascripts %}
+    <script>
+        (function($) {
+
+            'use strict';
+
+            $(function() {
+                $('.datatable').dataTable({
+                    "pageLength": 50
+                });
+            });
+
+        }).apply(this, [jQuery]);
+    </script>
+{% endblock %}

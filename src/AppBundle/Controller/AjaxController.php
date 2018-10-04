@@ -36,7 +36,7 @@
 		/**
 		 * @Route("/winwheel/get_segments/", name="ajax_winwheel_get_segments", methods={"GET", "POST"})
 		 */
-		public function winwheelGetSegmentsAction(Request $request)
+		public function winWheelGetSegmentsAction(Request $request)
 		{
 			$segments = $this->get('session')->get('segments');
 			$segmentsGeneratedAt = $this->get('session')->get('segments_generated_at');
@@ -60,6 +60,8 @@
 					->getQuery();
 				$prizes = $query->getResult();
 				#endregion
+
+				//NOTE: Add empty segments if needed and handle them as 'nothing' wheel spin result
 
 				#region Fill segments with prizes
 				foreach($prizes as $prize)
@@ -161,7 +163,7 @@
 		/**
 		 * @Route("/winwheel/get_lucky_segment/", name="ajax_winwheel_get_lucky_segment", methods={"GET", "POST"})
 		 */
-		public function winwheelGetLuckySegmentAction(Request $request)
+		public function winWheelGetLuckySegmentAction(Request $request)
 		{
 			if($this->get('session')->get('already_spinned'))
 			{
@@ -217,7 +219,7 @@
 		/**
 		 * @Route("/winwheel/accept/", name="ajax_winwheel_accept_winnings", methods={"GET", "POST"})
 		 */
-		public function winwheelAcceptWinnings(Request $request)
+		public function winWheelAcceptWinningsAction(Request $request)
 		{
 			$user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -304,7 +306,7 @@
 		/**
 		 * @Route("/winwheel/reject/", name="ajax_winwheel_reject_winnings", methods={"GET", "POST"})
 		 */
-		public function winwheelRejectWinnings(Request $request)
+		public function winWheelRejectWinningsAction(Request $request)
 		{
 			$user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -352,13 +354,14 @@
 				return new JsonResponse(['success' => false, 'error' => 404, 'message' => 'Spin not found!']);
 			}
 
+			// TODO: Unreachable statement added as a notice that we need to add try{ ... }catch{ ... } everywhere but I'am too lazy
 			return new JsonResponse(['success' => false, 'error' => 500, 'message' => 'Internal error occured']);
 		}
 
 		/**
 		 * @Route("/balance/convert/", name="ajax_balance_convert", methods={"GET", "POST"})
 		 */
-		public function balanceConvert(Request $request)
+		public function balanceConvertAction(Request $request)
 		{
 			$user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -406,7 +409,7 @@
 		/**
 		 * @Route("/balance/withdrawal/", name="ajax_balance_withdrawal", methods={"GET", "POST"})
 		 */
-		public function balanceWithdrawal(Request $request)
+		public function balanceWithdrawalAction(Request $request)
 		{
 			$user = $this->get('security.token_storage')->getToken()->getUser();
 

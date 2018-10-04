@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity as Entity;
 use AppBundle\Entity\User;
+use AppBundle\Entity\WinWheelSpin;
+use AppBundle\Entity\UserPrize;
+use AppBundle\Entity\Operation;
 
 class DefaultController extends Controller
 {
@@ -23,15 +26,39 @@ class DefaultController extends Controller
 
 	    $user = $this->get('security.token_storage')->getToken()->getUser();
 
+
+	    $repository = $this->getDoctrine()->getRepository(WinWheelSpin::class);
+	    $spins = $repository->createQueryBuilder('s')
+		    ->select('count(s.id)')
+		    ->getQuery()
+		    ->getSingleScalarResult();
+
+	    $repository = $this->getDoctrine()->getRepository(UserPrize::class);
+	    $winners = $repository->createQueryBuilder('p')
+		    ->select('count(p.id)')
+		    ->getQuery()
+		    ->getSingleScalarResult();
+
+	    $repository = $this->getDoctrine()->getRepository(Operation::class);
+	    $payouts = $repository->createQueryBuilder('o')
+		    ->select('sum(o.amount)')
+		    ->where('o.type = :type')
+		    ->andWhere('o.status = :status')
+		    ->setParameter('type', "withdrawal")
+		    ->setParameter('status', "complete")
+		    ->getQuery()
+		    ->getSingleScalarResult();
+
+
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-	        'spins' => 1281,
-	        'new_spins' => 2,
+	        'spins' => $spins,
+	        'new_spins' => 0,
 	        'members_count' => $membersCount,
-	        'winners' => 38,
+	        'winners' => $winners,
 	        'balance' => $user->getBalance(),
 	        'bonuses' => $user->getBonuses(),
-	        'payouts' => 10237.28,
+	        'payouts' => $payouts,
 	        'convert_rate' => $this->container->getParameter('loyalty_to_cash_rate')
         ]);
     }
@@ -51,7 +78,7 @@ class DefaultController extends Controller
 		$items = $this->getDoctrine()->getRepository(Entity\Menu::class)->findAll();
 		$menu = [];
 
-		// TODO: Add recursion and permissions check
+		// TODO: Need to add recursion and permissions check to use dynamic menu constructor
 		foreach($items as $item)
 		{
 			if($item->getParent() == null)

@@ -63,6 +63,13 @@
 		 */
 		private $quantity;
 
+		/**
+		 * @var boolean
+		 *
+		 * @ORM\Column(name="is_active", type="boolean", nullable=false, options={"default" : true, "comment": "Activity"})
+		 */
+		private $isActive;
+
 		public function __construct() {
 
 		}
@@ -163,6 +170,21 @@
 			$this->quantity += $quantity;
 		}
 
+		/**
+		 * @return bool
+		 */
+		public function isActive()
+		{
+			return $this->isActive;
+		}
+
+		/**
+		 * @param bool $isActive
+		 */
+		public function setIsActive($isActive)
+		{
+			$this->isActive = $isActive;
+		}
 
 		public function jsonSerialize()
 		{
@@ -172,7 +194,8 @@
 				'description' => $this->desctiption,
 				'image' => $this->image,
 				'cost' => $this->cost,
-				'quantity' => $this->quantity
+				'quantity' => $this->quantity,
+				'is_active' => $this->isActive
 			);
 		}
 

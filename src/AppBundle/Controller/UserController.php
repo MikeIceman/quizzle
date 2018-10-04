@@ -89,7 +89,7 @@ class UserController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-        	// TODO: Save user password and role
+        	// TODO: Save user password and role. This is just an example of the code;
 
             $this->getDoctrine()->getManager()->flush();
 

@@ -13,6 +13,7 @@
 	use Symfony\Component\HttpFoundation\Request;
 	use AppBundle\Entity as Entity;
 	use AppBundle\Entity\WinWheelSpin;
+	use AppBundle\Entity\Prize;
 
 	/**
 	 * Class GamesController
@@ -55,10 +56,15 @@
 
 			//$this->get('session')->set('last_spin_date', $lastSpinDate);
 
+			$prizes = $this->getDoctrine()->getRepository(Prize::class)->findBy([
+				'isActive' => true
+			]);
+
 			return $this->render('games/winwheel.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 				'last_spin' => $lastSpinDate,
-				'next_spin' => $nextSpinDate
+				'next_spin' => $nextSpinDate,
+				'prizes' => $prizes,
 			]);
 		}
 

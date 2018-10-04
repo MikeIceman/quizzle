@@ -11,6 +11,9 @@
 	use Symfony\Component\Routing\Annotation\Route;
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 	use Symfony\Component\HttpFoundation\Request;
+	use AppBundle\Entity\WinWheelSpin;
+	use AppBundle\Entity\UserPrize;
+	use AppBundle\Entity\Operation;
 
 
 	/**
@@ -42,8 +45,22 @@
 		 */
 		public function winningsAction(Request $request)
 		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$repository = $this->getDoctrine()->getRepository(WinWheelSpin::class);
+
+			// Get latest spin
+			$winnings = $repository->findBy(
+				[
+					'user' => $user,
+					'prizeType' => ['cash', 'bonus'],
+				],
+				['id' => 'DESC']
+			);
+
 			return $this->render('personal/winnings.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'winnings' => $winnings
 			]);
 		}
 
@@ -52,8 +69,46 @@
 		 */
 		public function prizesAction(Request $request)
 		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$repository = $this->getDoctrine()->getRepository(UserPrize::class);
+
+			// Get latest spin
+			$prizes = $repository->findBy(
+				[
+					'user' => $user,
+				],
+				['id' => 'ASC']
+			);
+
 			return $this->render('personal/prizes.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'prizes' => $prizes
+			]);
+		}
+
+		/**
+		 * @Route("/operations/", name="personal_operations")
+		 */
+		public function operationsAction(Request $request)
+		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			// Get latest spin
+			$operations = $repository->findBy(
+				[
+					'user' => $user,
+					'type' => ['bonus', 'win', 'exchange']
+				],
+				['id' => 'DESC']
+			);
+
+			return $this->render('personal/operations.html.twig', [
+				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'operations' => $operations,
+				'conversion_rate' => $this->container->getParameter('loyalty_to_cash_rate')
 			]);
 		}
 
@@ -62,8 +117,23 @@
 		 */
 		public function withdrawalsAction(Request $request)
 		{
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+
+			// Get latest spin
+			$withdrawals = $repository->findBy(
+				[
+					'user' => $user,
+					'type' => 'withdrawal'
+				],
+				['id' => 'DESC']
+			);
+
+			// Deprecated: no more need this action because all withdrawals are in "Operations" wiew
 			return $this->render('personal/withdrawals.html.twig', [
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+				'withdrawals' => $withdrawals,
 			]);
 		}
 	}
