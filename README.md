@@ -1,4 +1,4 @@
-Quizzle Demo Application v1.0
+Quizzle Demo Application v1.0.1
 ========================
 [![Symfony](https://img.shields.io/badge/Powered_by-Symfony_Framework-green.svg?style=flat)](https://symfony.com/)
 
