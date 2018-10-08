@@ -33,10 +33,43 @@
 
 			$role = $user->getRoleDescription($user->getHighestRole());
 
+			$repository = $this->getDoctrine()->getRepository(WinWheelSpin::class);
+			$games = $repository->createQueryBuilder('g')
+				->select("COUNT(g.id)")
+				->where('g.user = :user')
+				->setParameter('user', $user)
+				->getQuery()
+				->getSingleScalarResult();
+
+			$wins = $repository->createQueryBuilder('g')
+				->select("COUNT(g.id)")
+				->where('g.user = :user')
+				->andWhere('g.prizeType = :type')
+				->setParameter('user', $user)
+				->setParameter('type', 'prize')
+				->getQuery()
+				->getSingleScalarResult();
+
+			$repository = $this->getDoctrine()->getRepository(Operation::class);
+			$withdrawals = $repository->createQueryBuilder('o')
+				->select("SUM(o.amount)")
+				->where('o.user = :user')
+				->andWhere('o.type = :type')
+				->andWhere('o.status = :status')
+				->groupBy('o.user')
+				->setParameter('user', $user)
+				->setParameter('type', 'withdrawal')
+				->setParameter('status', 'complete')
+				->getQuery()
+				->getSingleScalarResult();
+
 			return $this->render('personal/index.html.twig', array(
 				'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 				'user' => $user,
-				'role' => $role
+				'role' => $role,
+				'games' => $games,
+				'wins' => $wins,
+				'withdrawals' => $withdrawals
 			));
 		}
 

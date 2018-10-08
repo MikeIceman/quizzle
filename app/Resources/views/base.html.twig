@@ -84,7 +84,7 @@
                 </section>
             </div>
         </section>
-
+        <div class="text-center mb-2"><span class="copyleft">&copy;</span> Copyleft 2018 by <a href="http://iceman.su" target="_blank" title="Developer website">Mike Iceman</a>. No Rights Reserved.</div>
         <!-- Vendor -->
         <script src="/vendor/jquery/jquery.js"></script>
         <script src="/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
@@ -148,5 +148,15 @@
 
         <!-- Custom JS -->
         {% block javascripts %}{% endblock %}
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12710581-12"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-12710581-12');
+        </script>
     </body>
 </html>

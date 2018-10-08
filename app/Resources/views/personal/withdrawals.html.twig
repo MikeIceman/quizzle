@@ -29,7 +29,7 @@
                                     <span class="
                                         {% if withdrawal.status == 'pending' %}
                                             text-warning
-                                        {% elseif withdrawal.status == 'reversed' %}
+                                        {% elseif withdrawal.status == 'reversed' or withdrawal.status == 'cancelled' %}
                                             text-danger
                                         {% else %}
                                             text-success
@@ -46,6 +46,8 @@
                                         <i class="fas fa-check text-success" style="cursor: help" data-toggle="tooltip" data-original-title="Completed"></i> Completed
                                     {% elseif withdrawal.status == 'reversed' %}
                                         <i class="fas fa-sync-alt text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Reversed"></i> Reversed
+                                    {% elseif withdrawal.status == 'cancelled' %}
+                                        <i class="fas fa-times text-danger" style="cursor: help" data-toggle="tooltip" data-original-title="Reversed"></i> Cancelled
                                     {% endif %}
                                 </td>
                             </tr>
