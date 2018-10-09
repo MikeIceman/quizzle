@@ -52,6 +52,14 @@ Too many stuff;
 Will be added later.
 ```
 
+## Console commands
+
+To make batch withdrawal you can use following command:
+```
+php bin/console withdrawal:batch <N>
+```
+Where `<N>` is a number of pending operations you want to proceed
+
 How to install?
 --------------
 
