@@ -1,242 +1,267 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: Iceman
-	 * Date: 24.09.2018
-	 * Time: 7:13
-	 */
 
-	namespace AppBundle\Entity;
+namespace AppBundle\Entity;
 
-	use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 
-	/**
-	 * Balance operations
-	 *
-	 * @ORM\Table(name="balance_operations", indexes={@ORM\Index(name="FK_user_id", columns={"user_id"})})
-	 * @ORM\Entity
-	 */
-	class Operation
-	{
-		/**
-		 * @var integer
-		 *
-		 * @ORM\Column(name="id", type="integer", nullable=false)
-		 * @ORM\Id
-		 * @ORM\GeneratedValue(strategy="IDENTITY")
-		 */
-		private $id;
+/**
+ * Balance operations
+ *
+ * @package AppBundle\Entity
+ * @ORM\Table(name="balance_operations", indexes={@ORM\Index(name="FK_user_id", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Operation
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
-		/**
-		 * @var \DateTime
-		 *
-		 * @ORM\Column(name="date_added", type="datetime", nullable=false, options={"comment":"Date and time when added"})
-		 */
-		private $dateAdded;
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="date_added", type="datetime", nullable=false, options={"comment":"Date and time when added"})
+     */
+    private $dateAdded;
 
-		/**
-		 * @var \DateTime
-		 *
-		 * @ORM\Column(name="date_updated", type="datetime", nullable=false, options={"comment":"Date and time when updated"})
-		 */
-		private $dateUpdated;
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(
+     *     name="date_updated",
+     *     type="datetime",
+     *     nullable=false,
+     *     options={"comment":"Date and time when updated"}
+     * )
+     */
+    private $dateUpdated;
 
-		/**
-		 * @var \User
-		 *
-		 * @ORM\ManyToOne(targetEntity="User", inversedBy="operations")
-		 * @ORM\JoinColumns({
-		 *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-		 * })
-		 */
-		private $user;
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="operations")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
 
-		/**
-		 * @var \User
-		 *
-		 * @ORM\ManyToOne(targetEntity="User")
-		 * @ORM\JoinColumns({
-		 *   @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
-		 * })
-		 */
-		private $updatedBy;
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+     * })
+     */
+    private $updatedBy;
 
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="operation_type", type="string", nullable=false, columnDefinition="enum('win', 'exchange', 'bonus', 'withdrawal')", options={"default": "win", "comment": "Operation type (win, exchange - bonus balance; deposit, withdrawal - cash balance)"})
-		 */
-		private $type;
+    /**
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="operation_type",
+     *     type="string",
+     *     nullable=false,
+     *     columnDefinition="enum('win', 'exchange', 'bonus', 'withdrawal')",
+     *     options={"default": "win", "comment": "Operation type (win, exchange - bonus balance; deposit, withdrawal - cash balance)"}
+     * )
+     */
+    private $type;
 
-		/**
-		 * @var float
-		 *
-		 * @ORM\Column(name="operation_amount", type="decimal", precision=6, scale=2, nullable=true, options={"default" : 0, "comment": "Operation amount"})
-		 */
-		private $amount;
+    /**
+     * @var float
+     *
+     * @ORM\Column(
+     *     name="operation_amount",
+     *     type="decimal",
+     *     precision=6,
+     *     scale=2,
+     *     nullable=true,
+     *     options={"default" : 0, "comment": "Operation amount"}
+     * )
+     */
+    private $amount;
 
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="operation_status", type="string", nullable=false, columnDefinition="enum('pending', 'complete', 'reversed', 'cancelled')", options={"default": "pending", "comment": "Operation status"})
-		 */
-		private $status;
+    /**
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="operation_status",
+     *     type="string",
+     *     nullable=false,
+     *     columnDefinition="enum('pending', 'complete', 'reversed', 'cancelled')",
+     *     options={"default": "pending", "comment": "Operation status"}
+     * )
+     */
+    private $status;
 
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="transaction_id", type="string", length=50, nullable=true, options={"comment": "Paysystem transaction ID"})
-		 */
-		private $txnId;
+    /**
+     * @var string
+     *
+     * @ORM\Column(
+     *     name="transaction_id",
+     *     type="string",
+     *     length=50,
+     *     nullable=true,
+     *     options={"comment": "Paysystem transaction ID"}
+     * )
+     */
+    private $txnId;
 
-		public function __construct() {
-			$this->setDateAdded(new \DateTime());
-			$this->setDateUpdated(new \DateTime());
-		}
+    public function __construct()
+    {
+        $this->setDateAdded(new DateTime());
+        $this->setDateUpdated(new DateTime());
+    }
 
-		/**
-		 * @return int
-		 */
-		public function getId()
-		{
-			return $this->id;
-		}
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-		/**
-		 * @param int $id
-		 */
-		public function setId($id)
-		{
-			$this->id = $id;
-		}
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-		/**
-		 * @return \DateTime
-		 */
-		public function getDateAdded()
-		{
-			return $this->dateAdded;
-		}
+    /**
+     * @return DateTime
+     */
+    public function getDateAdded()
+    {
+        return $this->dateAdded;
+    }
 
-		/**
-		 * @param \DateTime $dateAdded
-		 */
-		public function setDateAdded($dateAdded)
-		{
-			$this->dateAdded = $dateAdded;
-		}
+    /**
+     * @param DateTime $dateAdded
+     */
+    public function setDateAdded($dateAdded)
+    {
+        $this->dateAdded = $dateAdded;
+    }
 
-		/**
-		 * @return \DateTime
-		 */
-		public function getDateUpdated()
-		{
-			return $this->dateUpdated;
-		}
+    /**
+     * @return DateTime
+     */
+    public function getDateUpdated()
+    {
+        return $this->dateUpdated;
+    }
 
-		/**
-		 * @param \DateTime $dateUpdated
-		 */
-		public function setDateUpdated($dateUpdated)
-		{
-			$this->dateUpdated = $dateUpdated;
-		}
+    /**
+     * @param DateTime $dateUpdated
+     */
+    public function setDateUpdated($dateUpdated)
+    {
+        $this->dateUpdated = $dateUpdated;
+    }
 
-		/**
-		 * @return \User
-		 */
-		public function getUser()
-		{
-			return $this->user;
-		}
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
-		/**
-		 * @param \User $user
-		 */
-		public function setUser($user)
-		{
-			$this->user = $user;
-		}
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
-		/**
-		 * @return \User
-		 */
-		public function getUpdatedBy()
-		{
-			return $this->updatedBy;
-		}
+    /**
+     * @return User
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
 
-		/**
-		 * @param \User $updatedBy
-		 */
-		public function setUpdatedBy($updatedBy)
-		{
-			$this->updatedBy = $updatedBy;
-		}
+    /**
+     * @param User $updatedBy
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    }
 
-		/**
-		 * @return string
-		 */
-		public function getType()
-		{
-			return $this->type;
-		}
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-		/**
-		 * @param string $type
-		 */
-		public function setType($type)
-		{
-			$this->type = $type;
-		}
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
-		/**
-		 * @return float
-		 */
-		public function getAmount()
-		{
-			return $this->amount;
-		}
+    /**
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
-		/**
-		 * @param float $amount
-		 */
-		public function setAmount($amount)
-		{
-			$this->amount = $amount;
-		}
+    /**
+     * @param float $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
 
-		/**
-		 * @return string
-		 */
-		public function getStatus()
-		{
-			return $this->status;
-		}
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-		/**
-		 * @param string $status
-		 */
-		public function setStatus($status)
-		{
-			$this->status = $status;
-		}
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
 
-		/**
-		 * @return string
-		 */
-		public function getTxnId()
-		{
-			return $this->txnId;
-		}
+    /**
+     * @return string
+     */
+    public function getTxnId()
+    {
+        return $this->txnId;
+    }
 
-		/**
-		 * @param string $txnId
-		 */
-		public function setTxnId($txnId)
-		{
-			$this->txnId = $txnId;
-		}
-
-
-	}
+    /**
+     * @param string $txnId
+     */
+    public function setTxnId($txnId)
+    {
+        $this->txnId = $txnId;
+    }
+}
