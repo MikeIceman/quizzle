@@ -46,11 +46,10 @@ class PersonalController extends Controller
 
         $repository = $this->getDoctrine()->getRepository(Operation::class);
         $withdrawals = $repository->createQueryBuilder('o')
-            ->select("SUM(o.amount)")
+            ->select("COALESCE(SUM(o.amount), 0)")
             ->where('o.user = :user')
             ->andWhere('o.type = :type')
             ->andWhere('o.status = :status')
-            ->groupBy('o.user')
             ->setParameter('user', $user)
             ->setParameter('type', 'withdrawal')
             ->setParameter('status', 'complete')
