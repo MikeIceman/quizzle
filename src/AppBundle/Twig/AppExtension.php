@@ -1,42 +1,63 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: Iceman
-	 * Date: 23.09.2018
-	 * Time: 21:41
-	 */
 
-	namespace AppBundle\Twig;
+namespace AppBundle\Twig;
 
-	use Twig\Extension\AbstractExtension;
-	use Twig\TwigFilter;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
-	class AppExtension extends AbstractExtension
-	{
-		public function getFilters()
-		{
-			return array(
-				new TwigFilter('md5', array($this, 'md5Filter')),
-				new TwigFilter('money', array($this, 'moneyFilter')),
-				new TwigFilter('number', array($this, 'numberFilter')),
-			);
-		}
+/**
+ * Class AppExtension
+ *
+ * @package AppBundle\Twig
+ */
+class AppExtension extends AbstractExtension
+{
+    /**
+     * @return array|TwigFilter[]
+     */
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('md5', [$this, 'md5Filter']),
+            new TwigFilter('money', [$this, 'moneyFilter']),
+            new TwigFilter('number', [$this, 'numberFilter']),
+        ];
+    }
 
-		public function md5Filter($string)
-		{
-			return md5($string);
-		}
+    /**
+     * @param $string
+     *
+     * @return string
+     */
+    public function md5Filter($string)
+    {
+        return md5($string);
+    }
 
-		public function moneyFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
-		{
-			$price = number_format($number, $decimals, $decPoint, $thousandsSep);
-			$price = '$'.$price;
+    /**
+     * @param $number
+     * @param int $decimals
+     * @param string $decPoint
+     * @param string $thousandsSep
+     *
+     * @return string
+     */
+    public function moneyFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
+    {
+        $price = number_format($number, $decimals, $decPoint, $thousandsSep);
+        return '$' . $price;
+    }
 
-			return $price;
-		}
-
-		public function numberFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
-		{
-			return number_format($number, $decimals, $decPoint, $thousandsSep);
-		}
-	}
+    /**
+     * @param $number
+     * @param int $decimals
+     * @param string $decPoint
+     * @param string $thousandsSep
+     *
+     * @return string
+     */
+    public function numberFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
+    {
+        return number_format($number, $decimals, $decPoint, $thousandsSep);
+    }
+}

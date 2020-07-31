@@ -5,11 +5,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Prize;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\PrizeType;
 
 /**
  * Prize controller.
- *
+ * @package AppBundle\Controller
  * @Route("/admin/prize")
  */
 class PrizeController extends Controller
@@ -26,9 +31,12 @@ class PrizeController extends Controller
 
         $prizes = $em->getRepository('AppBundle:Prize')->findAll();
 
-        return $this->render('prize/index.html.twig', array(
-            'prizes' => $prizes,
-        ));
+        return $this->render(
+            'prize/index.html.twig',
+            [
+                'prizes' => $prizes,
+            ]
+        );
     }
 
     /**
@@ -36,11 +44,14 @@ class PrizeController extends Controller
      *
      * @Route("/new", name="prize_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return RedirectResponse|Response
      */
     public function newAction(Request $request)
     {
         $prize = new Prize();
-        $form = $this->createForm('AppBundle\Form\PrizeType', $prize);
+        $form = $this->createForm(PrizeType::class, $prize);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,13 +59,16 @@ class PrizeController extends Controller
             $em->persist($prize);
             $em->flush();
 
-            return $this->redirectToRoute('prize_show', array('id' => $prize->getId()));
+            return $this->redirectToRoute('prize_show', ['id' => $prize->getId()]);
         }
 
-        return $this->render('prize/new.html.twig', array(
-            'prize' => $prize,
-            'form' => $form->createView(),
-        ));
+        return $this->render(
+            'prize/new.html.twig',
+            [
+                'prize' => $prize,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -62,15 +76,21 @@ class PrizeController extends Controller
      *
      * @Route("/{id}", name="prize_show")
      * @Method("GET")
+     * @param Prize $prize
+     *
+     * @return Response
      */
     public function showAction(Prize $prize)
     {
         $deleteForm = $this->createDeleteForm($prize);
 
-        return $this->render('prize/show.html.twig', array(
-            'prize' => $prize,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'prize/show.html.twig',
+            [
+                'prize' => $prize,
+                'delete_form' => $deleteForm->createView(),
+            ]
+        );
     }
 
     /**
@@ -78,24 +98,31 @@ class PrizeController extends Controller
      *
      * @Route("/{id}/edit", name="prize_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Prize $prize
+     *
+     * @return RedirectResponse|Response
      */
     public function editAction(Request $request, Prize $prize)
     {
         $deleteForm = $this->createDeleteForm($prize);
-        $editForm = $this->createForm('AppBundle\Form\PrizeType', $prize);
+        $editForm = $this->createForm(PrizeType::class, $prize);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('prize_edit', array('id' => $prize->getId()));
+            return $this->redirectToRoute('prize_edit', ['id' => $prize->getId()]);
         }
 
-        return $this->render('prize/edit.html.twig', array(
-            'prize' => $prize,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'prize/edit.html.twig',
+            [
+                'prize' => $prize,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ]
+        );
     }
 
     /**
@@ -103,6 +130,9 @@ class PrizeController extends Controller
      *
      * @Route("/{id}", name="prize_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Prize $prize
+     * @return RedirectResponse
      */
     public function deleteAction(Request $request, Prize $prize)
     {
@@ -123,12 +153,17 @@ class PrizeController extends Controller
      *
      * @param Prize $prize The prize entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return FormInterface
      */
     private function createDeleteForm(Prize $prize)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('prize_delete', array('id' => $prize->getId())))
+            ->setAction(
+                $this->generateUrl(
+                    'prize_delete',
+                    ['id' => $prize->getId()]
+                )
+            )
             ->setMethod('DELETE')
             ->getForm()
         ;

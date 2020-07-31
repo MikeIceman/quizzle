@@ -1,0 +1,49 @@
+image: exileed/php-testing:7.3
+
+before_script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+stages:
+    - build
+    - code-style
+    - unit-test
+
+composer:
+    stage: build
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-composer
+        paths:
+            - vendor/
+    script:
+        - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    artifacts:
+        expire_in: 6 month
+        paths:
+            - vendor/
+
+code style:
+    stage: code-style
+    dependencies:
+        - composer
+    script:
+        - composer check-cs
+
+phpunit:
+    stage: unit-test
+    dependencies:
+        - composer
+    artifacts:
+        expire_in: 1 month
+        paths:
+            - build/clover.xml
+    script:
+        - vendor/bin/phpunit --coverage-text --colors=never
+#    only:
+#        - merge_requests
+#        - develop
+#        - master

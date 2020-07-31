@@ -9,7 +9,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * User
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D64992FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_8D93D649A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_8D93D649C05FB297", columns={"confirmation_token"})})
+ * @package AppBundle\Entity
+ * @ORM\Table(
+ *     name="user",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D64992FC23A8", columns={"username_canonical"}),
+ *     @ORM\UniqueConstraint(name="UNIQ_8D93D649A0D96FBF", columns={"email_canonical"}),
+ *     @ORM\UniqueConstraint(name="UNIQ_8D93D649C05FB297", columns={"confirmation_token"})}
+ * )
  * @ORM\Entity
  */
 class User extends BaseUser
@@ -21,21 +27,21 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-	protected $id;
+    protected $id;
 
-	/**
+    /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
-	 *
-	 * @Assert\NotBlank(message="Пожалуйста, введите имя", groups={"Registration", "Profile"})
-	 * @Assert\Length(
-	 *     min=3,
-	 *     max=255,
-	 *     minMessage="Слишком короткое имя",
-	 *     maxMessage="Слишком длинное имя",
-	 *     groups={"Registration", "Profile"}
-	 * )
+     *
+     * @Assert\NotBlank(message="Пожалуйста, введите имя", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="Слишком короткое имя",
+     *     maxMessage="Слишком длинное имя",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $firstname;
 
@@ -71,206 +77,215 @@ class User extends BaseUser
      */
     private $phone;
 
-	/**
-	 * @var float
-	 *
-	 * @ORM\Column(name="bonus_balance", type="decimal", precision=10, scale=2, nullable=true, options={"default" : 0, "comment":"Bonus balance"})
-	 */
-	private $bonuses;
+    /**
+     * @var float
+     *
+     * @ORM\Column(
+     *     name="bonus_balance",
+     *     type="decimal",
+     *     precision=10,
+     *     scale=2,
+     *     nullable=true,
+     *     options={"default" : 0, "comment":"Bonus balance"}
+     * )
+     */
+    private $bonuses;
 
-	/**
-	 * @var float
-	 *
-	 * @ORM\Column(name="cash_balance", type="decimal", precision=10, scale=2, nullable=true, options={"default" : 0, "comment":"Cash balance"})
-	 */
-	private $balance;
+    /**
+     * @var float
+     *
+     * @ORM\Column(
+     *     name="cash_balance",
+     *     type="decimal",
+     *     precision=10,
+     *     scale=2,
+     *     nullable=true,
+     *     options={"default" : 0, "comment":"Cash balance"}
+     * )
+     */
+    private $balance;
 
-	/**
-	 * @var \WinWheelSpin
-	 *
-	 * @ORM\OneToMany(targetEntity="WinWheelSpin", mappedBy="user")
-	 */
-	private $spins;
+    /**
+     * @var WinWheelSpin[]
+     *
+     * @ORM\OneToMany(targetEntity="WinWheelSpin", mappedBy="user")
+     */
+    private $spins;
 
-	/**
-	 * @var \UserPrize
-	 *
-	 * @ORM\OneToMany(targetEntity="UserPrize", mappedBy="user")
-	 */
-	private $prizes;
+    /**
+     * @var UserPrize
+     *
+     * @ORM\OneToMany(targetEntity="UserPrize", mappedBy="user")
+     */
+    private $prizes;
 
-	/**
-	 * @var \Operation
-	 *
-	 * @ORM\OneToMany(targetEntity="Operation", mappedBy="user")
-	 */
-	private $operations;
+    /**
+     * @var Operation
+     *
+     * @ORM\OneToMany(targetEntity="Operation", mappedBy="user")
+     */
+    private $operations;
 
-	public function __construct()
-	{
-		parent::__construct();
-		// your own logic
-		$this->roles = array('ROLE_USER');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->roles = ['ROLE_USER'];
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getFirstname()
-	{
-		return $this->firstname;
-	}
+    /**
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
 
-	/**
-	 * @param string $firstname
-	 */
-	public function setFirstname($firstname)
-	{
-		$this->firstname = $firstname;
-	}
+    /**
+     * @param string $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getLastname()
-	{
-		return $this->lastname;
-	}
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
 
-	/**
-	 * @param string $lastname
-	 */
-	public function setLastname($lastname)
-	{
-		$this->lastname = $lastname;
-	}
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getPhone()
-	{
-		return $this->phone;
-	}
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 
-	/**
-	 * @param string $phone
-	 */
-	public function setPhone($phone)
-	{
-		$this->phone = $phone;
-	}
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
 
-	/**
-	 * @return \WinWheelSpin
-	 */
-	public function getSpins()
-	{
-		return $this->spins;
-	}
+    /**
+     * @return WinWheelSpin[]
+     */
+    public function getSpins()
+    {
+        return $this->spins;
+    }
 
-	/**
-	 * @param \WinWheelSpin $spins
-	 */
-	public function setSpins($spins)
-	{
-		$this->spins = $spins;
-	}
+    /**
+     * @param WinWheelSpin[] $spins
+     */
+    public function setSpins($spins)
+    {
+        $this->spins = $spins;
+    }
 
-	/**
-	 * @return \UserPrize
-	 */
-	public function getPrizes()
-	{
-		return $this->prizes;
-	}
+    /**
+     * @return UserPrize
+     */
+    public function getPrizes()
+    {
+        return $this->prizes;
+    }
 
-	/**
-	 * @param \UserPrize $prizes
-	 */
-	public function setPrizes($prizes)
-	{
-		$this->prizes = $prizes;
-	}
+    /**
+     * @param UserPrize $prizes
+     */
+    public function setPrizes($prizes)
+    {
+        $this->prizes = $prizes;
+    }
 
-	/**
-	 * @return float
-	 */
-	public function getBonuses()
-	{
-		return $this->bonuses;
-	}
+    /**
+     * @return float
+     */
+    public function getBonuses()
+    {
+        return $this->bonuses;
+    }
 
-	/**
-	 * @param float $bonuses
-	 */
-	public function setBonuses($bonuses)
-	{
-		$this->bonuses = $bonuses;
-	}
+    /**
+     * @param float $bonuses
+     */
+    public function setBonuses($bonuses)
+    {
+        $this->bonuses = $bonuses;
+    }
 
-	/**
-	 * @param float $amount
-	 */
-	public function updateBonusBalance($amount)
-	{
-		$this->bonuses += $amount;
-	}
+    /**
+     * @param float $amount
+     */
+    public function updateBonusBalance($amount)
+    {
+        $this->bonuses += $amount;
+    }
 
-	/**
-	 * @return float
-	 */
-	public function getBalance()
-	{
-		return $this->balance;
-	}
+    /**
+     * @return float
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
 
-	/**
-	 * @param float $balance
-	 */
-	public function setBalance($balance)
-	{
-		$this->balance = $balance;
-	}
+    /**
+     * @param float $balance
+     */
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+    }
 
-	/**
-	 * @param float $amount
-	 */
-	public function updateBalance($amount)
-	{
-		$this->balance += $amount;
-	}
+    /**
+     * @param float $amount
+     */
+    public function updateBalance($amount)
+    {
+        $this->balance += $amount;
+    }
 
-	/**
-	 * @return bool|mixed
-	 */
-	public function getHighestRole()
-	{
-		$rolesSortedByImportance = ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_USER'];
-		foreach ($rolesSortedByImportance as $role)
-		{
-			if (in_array($role, $this->roles))
-			{
-				return $role;
-			}
-		}
+    /**
+     * @return bool|mixed
+     */
+    public function getHighestRole()
+    {
+        $rolesSortedByImportance = ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_USER'];
+        foreach ($rolesSortedByImportance as $role) {
+            if (in_array($role, $this->roles)) {
+                return $role;
+            }
+        }
 
-		return false; // Unknown role?
-	}
+        return false; // Unknown role?
+    }
 
-	/**
-	 * @param string $role
-	 * @return string
-	 */
-	public function getRoleDescription($role)
-	{
-		$roles = ['ROLE_SUPER_ADMIN' => 'Разработчик', 'ROLE_ADMIN' => 'Администратор', 'ROLE_USER' => 'Участник'];
-		if(array_key_exists($role, $roles))
-		{
-			return $roles[$role];
-		}
+    /**
+     * @param string $role
+     * @return string
+     */
+    public function getRoleDescription($role)
+    {
+        $roles = ['ROLE_SUPER_ADMIN' => 'Разработчик', 'ROLE_ADMIN' => 'Администратор', 'ROLE_USER' => 'Участник'];
+        if (array_key_exists($role, $roles)) {
+            return $roles[$role];
+        }
 
-		return ''; // Unknown role?
-	}
+        return ''; // Unknown role?
+    }
 }
-

@@ -5,11 +5,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\UserType;
 
 /**
  * User CRUD controller.
- *
+ * @package AppBundle\Controller
  * @Route("/admin/user")
  */
 class UserController extends Controller
@@ -26,9 +31,12 @@ class UserController extends Controller
 
         $users = $em->getRepository('AppBundle:User')->findAll();
 
-        return $this->render('user/index.html.twig', array(
-            'users' => $users,
-        ));
+        return $this->render(
+            'user/index.html.twig',
+            [
+                'users' => $users,
+            ]
+        );
     }
 
     /**
@@ -36,11 +44,14 @@ class UserController extends Controller
      *
      * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return RedirectResponse|Response
      */
     public function newAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,13 +59,16 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
         }
 
-        return $this->render('user/new.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
-        ));
+        return $this->render(
+            'user/new.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -62,17 +76,23 @@ class UserController extends Controller
      *
      * @Route("/{id}", name="user_show")
      * @Method("GET")
+     * @param User $user
+     *
+     * @return Response
      */
     public function showAction(User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
-	    $role = $user->getRoleDescription($user->getHighestRole());
+        $role = $user->getRoleDescription($user->getHighestRole());
 
-        return $this->render('user/show.html.twig', array(
-            'user' => $user,
-            'delete_form' => $deleteForm->createView(),
-	        'role' => $role
-        ));
+        return $this->render(
+            'user/show.html.twig',
+            [
+                'user' => $user,
+                'delete_form' => $deleteForm->createView(),
+                'role' => $role
+            ]
+        );
     }
 
     /**
@@ -80,27 +100,33 @@ class UserController extends Controller
      *
      * @Route("/{id}/edit", name="user_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     *
+     * @return RedirectResponse|Response
      */
     public function editAction(Request $request, User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
-        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
+        $editForm = $this->createForm(UserType::class, $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-        	// TODO: Save user password and role. This is just an example of the code;
+            // TODO: Save user password and role. This is just an example of the code;
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
         }
 
-        return $this->render('user/edit.html.twig', array(
-            'user' => $user,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'user/edit.html.twig',
+            [
+                'user' => $user,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ]
+        );
     }
 
     /**
@@ -108,6 +134,9 @@ class UserController extends Controller
      *
      * @Route("/{id}", name="user_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
      */
     public function deleteAction(Request $request, User $user)
     {
@@ -128,12 +157,17 @@ class UserController extends Controller
      *
      * @param User $user The user entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return FormInterface
      */
     private function createDeleteForm(User $user)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
+            ->setAction(
+                $this->generateUrl(
+                    'user_delete',
+                    ['id' => $user->getId()]
+                )
+            )
             ->setMethod('DELETE')
             ->getForm()
         ;
